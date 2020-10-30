@@ -1,2 +1,2 @@
 # mohdamzar.com
-Personal Website
+[Click here](https://mohdamzar.com)
