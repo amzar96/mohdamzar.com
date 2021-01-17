@@ -1,62 +1,91 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="">
 
 <head>
   <meta charset="utf-8">
   <title>Page Not Found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Personal Website [mohdamzar]">
+  <meta property="og:description" content="Here is my personal website, this is my space.">
+  <meta property="og:url" content="https://mohdamzar.com">
+  <meta property="og:image" content="https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/personal2.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta property="og:site_name" content="mohdamzar personal website">
+  <meta name="twitter:image:alt" content="mohdamzar.com img">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat&family=Ubuntu:wght@300&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <meta name="theme-color" content="#fafafa">
   <style>
-    * {
-      line-height: 1.2;
-      margin: 0;
-    }
-
-    html {
-      color: #888;
-      display: table;
-      font-family: sans-serif;
-      height: 100%;
-      text-align: center;
-      width: 100%;
-    }
-
-    body {
-      display: table-cell;
-      vertical-align: middle;
-      margin: 2em auto;
-    }
-
-    h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
-    }
-
-    p {
-      margin: 0 auto;
-      width: 280px;
-    }
-
-    @media only screen and (max-width: 280px) {
-
-      body,
-      p {
-        width: 95%;
-      }
-
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 0.3em;
-      }
-
+    a {
+      color: inherit;
     }
   </style>
 </head>
 
 <body>
-  <h1>Page Not Found</h1>
-  <p>Sorry, but the page you were trying to view does not exist.</p>
+  <div
+    class="cursor-auto p-8 bg-gray-50 dark:bg-gray-900 flex items-center justify-center w-screen h-screen md:grid-cols-2">
+    <div class="flex mb-4 w-12 h-12 rounded-full float-right mr-3 mt-3">
+      <a href="./"><img class="w-12 h-12"
+          src="https://www.flaticon.com/svg/vstatic/svg/742/742752.svg?token=exp=1610848382~hmac=fc21a7e8d090c11eb63c154453986351" /></a>
+    </div>
+    <div class="px-5 py-4 bg-white dark:bg-gray-800 shadow-xl md:shadow-lg rounded-lg max-w-lg">
+
+      <p class="prose lg:prose-xl text-gray-800 dark:text-gray-100 leading-snug md:leading-normal">
+        Sorry, but the page you were trying to view does not exist &#10071;
+      </p>
+      <p class="font-light flex justify-center">
+        <a href="./">
+          <small>Go to Home</small></a>
+      </p>
+    </div>
+
+  </div>
+
+  </div>
+
+  <script src="js/vendor/modernizr-3.8.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
+  </script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () {
+      ga.q.push(arguments)
+    };
+    ga.q = [];
+    ga.l = +new Date;
+    ga('create', 'G-NV0LP3SD3G', 'auto');
+    ga('set', 'transport', 'beacon');
+    ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
-<!-- IE needs 512+ bytes: https://blogs.msdn.microsoft.com/ieinternals/2010/08/18/friendly-http-error-pages/ -->
