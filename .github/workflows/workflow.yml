@@ -1,0 +1,25 @@
+name: Deployment mohdamzar
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy mohdamzar
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.MOHDAMZAR_SECRET }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /home/amzar/www/mohdamzar.com
+          git reset --hard HEAD
+          git pull origin master 
+          sudo systemctl restart nginx
