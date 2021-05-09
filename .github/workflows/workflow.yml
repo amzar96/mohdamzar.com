@@ -22,4 +22,3 @@ jobs:
           cd /home/amzar/www/mohdamzar.com
           git reset --hard HEAD
           git pull origin master 
-          systemctl restart nginx
