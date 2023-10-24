@@ -19,6 +19,6 @@ jobs:
         key: ${{ secrets.MOHDAMZAR_SECRET }}
         port: ${{ secrets.PORT }}
         script: |
-          cd /home/amzar/www/mohdamzar.com
+          cd /home/amzar/my-homepage/mohdamzar.com
           git reset --hard HEAD
           git pull origin master
