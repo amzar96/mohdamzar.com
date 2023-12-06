@@ -21,6 +21,6 @@
     }
 }());
 
-console.log("please hire me as part-timer")
+console.log("hi, pls hire me.")
 
 // Place any jQuery/helper plugins in here.

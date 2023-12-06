@@ -10,7 +10,8 @@ jobs:
   build:
     name: deploy
     runs-on: ubuntu-latest
-    # steps:
+    steps:
+    - run: echo "hello"
     # - name: deploy mohdamzar
     #   uses: appleboy/ssh-action@master
     #   with:
