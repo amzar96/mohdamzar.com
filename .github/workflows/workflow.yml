@@ -10,15 +10,15 @@ jobs:
   build:
     name: deploy
     runs-on: ubuntu-latest
-    steps:
-    - name: deploy mohdamzar
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.MOHDAMZAR_SECRET }}
-        port: ${{ secrets.PORT }}
-        # script: |
-        #   cd /home/amzar/my-homepage/mohdamzar.com
-        #   git reset --hard HEAD
-        #   git pull origin master
+    # steps:
+    # - name: deploy mohdamzar
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USERNAME }}
+    #     key: ${{ secrets.MOHDAMZAR_SECRET }}
+    #     port: ${{ secrets.PORT }}
+    #     script: |
+    #       cd /home/amzar/my-homepage/mohdamzar.com
+    #       git reset --hard HEAD
+    #       git pull origin master
