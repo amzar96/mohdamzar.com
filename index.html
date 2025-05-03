@@ -1,114 +1,88 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en" class="no-js">
 
 <head>
-    <meta charset="utf-8">
-    <title>mohdamzar.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="mohdamzar.com">
-    <meta property="og:description" content="Digital Resume">
-    <meta property="og:url" content="https://mohdamzar.com">
-    <meta property="og:image" content="https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/A.jpg">
-    <meta name="twitter:card" content="summary_large_image">
+  <meta charset="utf-8">
+  <title>mohdamzar.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="mohdamzar.com">
+  <meta property="og:description" content="Digital Resume">
+  <meta property="og:url" content="https://mohdamzar.com">
+  <meta property="og:image" content="https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/A.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:site_name" content="Contact Me">
+  <meta name="twitter:image:alt" content="mohdamzar.com img">
 
-    <meta property="og:site_name" content="Contact Me">
-    <meta name="twitter:image:alt" content="mohdamzar.com img">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon.png">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Montserrat&family=Ubuntu:wght@300&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-    <meta name="theme-color" content="#fafafa">
-    <style>
-        a {
-            color: inherit;
-        }
-    </style>
+  <meta name="theme-color" content="#fafafa">
+  <style>
+    a {
+      color: inherit;
+    }
+  </style>
 </head>
 
-<body>
-    <div
-        class="cursor-auto p-8 bg-gray-50 dark:bg-gray-900 flex items-center justify-center sm:text-left w-screen h-screen md:grid-cols-8">
-        <div class="px-5 py-5 bg-white dark:bg-gray-800 shadow-xl md:shadow-lg rounded-lg max-w-lg">
-            <div class="flex mb-5"><img class="w-12 h-12 rounded-full float-right"
-                    src="https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/personal2.png" />
-                <div class="ml-2 mt-0.5">
-                    <span class="block font-medium text-base leading-snug text-black dark:text-gray-100">Am
-                        <small>(he/him)</small></span>
-                    <span class="block text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">Senior Data Engineer</span>
-                </div>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-montserrat">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl max-w-4xl w-full grid md:grid-cols-3 overflow-hidden">
 
-            </div>
+      <!-- Profile Side -->
+      <div class="bg-gradient-to-br from-indigo-600 to-blue-500 p-6 text-white flex flex-col items-center justify-center">
+        <img class="w-24 h-24 rounded-full border-4 border-white mb-4" src="https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/personal2.png" alt="Amzar Profile Photo">
+        <div class="text-center">
+          <h1 class="text-xl font-bold">Am <small class="text-sm">(he/him)</small></h1>
+          <p class="text-sm opacity-90">Senior Data Engineer</p>
+        </div>
+        <div class="mt-6 space-y-2 text-sm">
+          <div><i class="fas fa-thumbtack"></i> Kuala Lumpur, Malaysia</div>
+          <div><i class="fas fa-envelope"></i> <a href="mailto:me@mohdamzar.com" class="underline">me@mohdamzar.com</a></div>
+        </div>
+      </div>
 
-            <div class="flex mt-3 mb-3">
-                <p
-                    class="prose text-justify lg:prose-xl text-gray-800 dark:text-gray-100 leading-snug md:leading-normal">
-                    With over <span id="workingYear"></span>-years of experience <b
-                        class="underline">Python
-                        programming</b>, I specialize in data engineering. My focus lies in utilizing the Python stack for back-end development, deploying applications, and creating automation solutions aimed at reducing manual workload.<br><br>Now, I am an <b class="underline">Data & Analytics Engineer</b>
-                    working on data
-                    operation, including managing the ETL/ELT, database,
-                    and business analytics using multiples cloud and open-source technology. And yes, I code every day!
-                </p><br>
-            </div>
-            <small><i class="fas fa-thumbtack"></i> Kuala Lumpur, Malaysia</small><br>
-            <small><i class="fas fa-envelope"></i> Contact me: <a href="mailto:me@mohdamzar.com?Subject=Hello%20Am,"
-                    class="no-underline hover:underline" target="_top"><span
-                        class="select-all">me@mohdamzar.com</span></small></a><br>
-            <div class="flex mt-5">
-                <p class="font-light">
-                    <small><a href="https://github.com/amzar96" class="no-underline hover:underline"><i
-                                class="fab fa-github fa-lg"></i> Github</a></small>
-                    <small><a href="https://www.linkedin.com/in/amzar96/" class="no-underline hover:underline"><i
-                                class="fab fa-linkedin fa-lg"></i>
-                            Linkedln</a></small>
-                    <small><a href="https://stackoverflow.com/users/9816541/amzar/"
-                            class="no-underline hover:underline"><i class="fab fa-stack-overflow fa-lg"></i>
-                            Stack Overflow</a></small>
-                    <a href="https://www.behance.net/amzar96" class="no-underline hover:underline"><i
-                            class="fab fa-behance-square"></i>
-                        <small>Behance</small></a>
-
-                </p>
-                
-            </div>
-
-
+      <!-- Content Side -->
+      <div class="md:col-span-2 p-8 flex flex-col justify-between">
+        <div>
+          <p class="text-base leading-relaxed mb-6">
+            With over <span id="workingYear"></span> years of experience <b class="underline">Python programming</b>, I specialize in data engineering. My focus lies in utilizing the Python stack for back-end development, deploying applications, and creating automation solutions aimed at reducing manual workload.
+          </p>
+          <p class="text-base leading-relaxed">
+            Now, I am a <b class="underline">Data & Analytics Engineer</b> working on data operation, including managing the ETL/ELT, database, and business analytics using multiple cloud and open-source technologies. And yes, I code every day!
+          </p>
         </div>
 
+        <div class="mt-6">
+          <p class="text-sm font-light flex flex-wrap gap-4">
+            <a href="https://github.com/amzar96" class="hover:underline"><i class="fab fa-github fa-lg"></i> Github</a>
+            <a href="https://www.linkedin.com/in/amzar96/" class="hover:underline"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
+            <a href="https://stackoverflow.com/users/9816541/amzar/" class="hover:underline"><i class="fab fa-stack-overflow fa-lg"></i> Stack Overflow</a>
+            <a href="https://www.behance.net/amzar96" class="hover:underline"><i class="fab fa-behance-square fa-lg"></i> Behance</a>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    </div>
+  <script>
+    const startYear = 2019;
+    const thisYear = new Date().getFullYear();
+    const workingYear = thisYear - startYear;
+    document.getElementById("workingYear").textContent = workingYear;
+  </script>
 
-    <script src="js/vendor/modernizr-3.8.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')
-    </script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NV0LP3SD3G"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-NV0LP3SD3G');
-    </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NV0LP3SD3G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NV0LP3SD3G');
+  </script>
 </body>
 
 </html>
