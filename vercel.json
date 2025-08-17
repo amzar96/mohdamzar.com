@@ -4,6 +4,16 @@
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
+  "functions": {
+    "app/api/**/*.js": {
+      "runtime": "nodejs22.x"
+    }
+  },
+  "build": {
+    "env": {
+      "NODEJS_VERSION": "22"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
