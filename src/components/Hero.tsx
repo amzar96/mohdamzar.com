@@ -23,7 +23,6 @@ const Hero: React.FC = () => {
                 alt="Amzar Profile Photo"
                 className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white dark:border-gray-700 shadow-2xl"
               />
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 animate-pulse"></div>
             </div>
             
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
