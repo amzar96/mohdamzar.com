@@ -9,9 +9,11 @@ const Header: React.FC = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold gradient-text">
-              Amzar
-            </h1>
+            <img 
+              src="/favicon.svg" 
+              alt="Logo" 
+              className="w-8 h-8"
+            />
           </div>
           
           <div className="hidden md:block">
@@ -22,9 +24,6 @@ const Header: React.FC = () => {
               <a href="#experience" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">
                 Experience
               </a>
-              {/* <a href="#projects" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">
-                Projects
-              </a> */}
               <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-2 text-sm font-medium transition-colors">
                 Contact
               </a>

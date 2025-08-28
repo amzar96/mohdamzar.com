@@ -1,7 +1,11 @@
 import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onGameClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onGameClick }) => {
   const { ref, isVisible } = useScrollAnimation();
   
   const currentYear = new Date().getFullYear();
@@ -23,7 +27,6 @@ const Hero: React.FC = () => {
                 alt="Amzar Profile Photo"
                 className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white dark:border-gray-700 shadow-2xl"
               />
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white dark:border-gray-800 animate-pulse"></div>
             </div>
             
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -79,9 +82,9 @@ const Hero: React.FC = () => {
             <a href="#contact" className="btn-primary">
               Get In Touch
             </a>
-            {/* <a href="#projects" className="btn-ghost">
-              View Projects
-            </a> */}
+            <button onClick={onGameClick} className="btn-ghost">
+              🎮 Play Game
+            </button>
           </div>
 
           <div className="flex items-center gap-6 pt-4">

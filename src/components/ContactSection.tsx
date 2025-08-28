@@ -98,7 +98,15 @@ const ContactSection: React.FC = () => {
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
               Quick Message
             </h3>
-            <form className="space-y-4">
+            <form 
+              className="space-y-4" 
+              action="https://formsubmit.co/me@mohdamzar.com" 
+              method="POST"
+            >
+              <input type="hidden" name="_subject" value="New contact from website" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_next" value={window.location.href} />
+              
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Name
@@ -106,6 +114,8 @@ const ContactSection: React.FC = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                   placeholder="Your Name"
                 />
@@ -117,6 +127,8 @@ const ContactSection: React.FC = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                   placeholder="your.email@example.com"
                 />
@@ -127,7 +139,9 @@ const ContactSection: React.FC = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
                   placeholder="Your message..."
                 ></textarea>
