@@ -15,7 +15,10 @@
       "Bash(npm run dev:*)",
       "Bash(npx vite:*)",
       "Bash(timeout 10s npm run dev)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git reset:*)",
+      "Bash(git add:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": [],
