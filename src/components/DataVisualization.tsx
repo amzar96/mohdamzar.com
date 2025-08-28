@@ -174,35 +174,11 @@ const DataVisualization: React.FC = () => {
   }, [colorScheme]);
 
   return (
-    <>
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
-        <button
-          onClick={() => handleColorSchemeChange('purple')}
-          className={`px-3 py-1 rounded text-sm font-medium transition-all ${
-            colorScheme === 'purple'
-              ? 'bg-purple-600 text-white shadow-lg'
-              : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
-          }`}
-        >
-          Purple
-        </button>
-        <button
-          onClick={() => handleColorSchemeChange('yellow')}
-          className={`px-3 py-1 rounded text-sm font-medium transition-all ${
-            colorScheme === 'yellow'
-              ? 'bg-yellow-600 text-white shadow-lg'
-              : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
-          }`}
-        >
-          Yellow
-        </button>
-      </div>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-[-1] opacity-20"
-        style={{ mixBlendMode: 'multiply' }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 pointer-events-none z-[-1] opacity-20"
+      style={{ mixBlendMode: 'multiply' }}
+    />
   );
 };
 

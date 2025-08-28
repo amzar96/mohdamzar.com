@@ -1,7 +1,11 @@
 import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onGameClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onGameClick }) => {
   const { ref, isVisible } = useScrollAnimation();
   
   const currentYear = new Date().getFullYear();
@@ -78,9 +82,9 @@ const Hero: React.FC = () => {
             <a href="#contact" className="btn-primary">
               Get In Touch
             </a>
-            {/* <a href="#projects" className="btn-ghost">
-              View Projects
-            </a> */}
+            <button onClick={onGameClick} className="btn-ghost">
+              🎮 Play Game
+            </button>
           </div>
 
           <div className="flex items-center gap-6 pt-4">

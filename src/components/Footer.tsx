@@ -8,9 +8,6 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 gradient-text">
-              Amzar
-            </h3>
             <p className="text-gray-300 leading-relaxed">
               Senior Data Engineer passionate about building scalable data solutions 
               and automation tools using modern technologies.
