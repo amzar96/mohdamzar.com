@@ -101,7 +101,7 @@ const JumpGame: React.FC = () => {
 
       // Update score
       newObstacles.forEach(obstacle => {
-        if (obstacle.x === 50 - OBSTACLE_SPEED) {
+        if (obstacle.x <= 50 - OBSTACLE_SPEED && obstacle.x > 50 - OBSTACLE_SPEED - 5) {
           setScore(prev => prev + 10);
         }
       });
