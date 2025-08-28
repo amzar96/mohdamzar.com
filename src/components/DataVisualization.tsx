@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 type ColorScheme = 'purple' | 'yellow';
 
@@ -36,15 +36,8 @@ const hexToRgb = (hex: string) => {
 const DataVisualization: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
-    const saved = localStorage.getItem('dataVizColorScheme');
-    return (saved === 'purple' || saved === 'yellow') ? saved : 'purple';
-  });
+  const colorScheme: ColorScheme = 'purple';
 
-  const handleColorSchemeChange = (scheme: ColorScheme) => {
-    setColorScheme(scheme);
-    localStorage.setItem('dataVizColorScheme', scheme);
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -171,7 +164,7 @@ const DataVisualization: React.FC = () => {
       }
       window.removeEventListener('resize', handleResize);
     };
-  }, [colorScheme]);
+  }, []);
 
   return (
     <canvas
