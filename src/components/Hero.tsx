@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             </div>
             
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Am <span className="text-sm text-gray-500 dark:text-gray-400">(he/him)</span>
+              Amzar <span className="text-sm text-gray-500 dark:text-gray-400">(he/him)</span>
             </h1>
             <p className="text-lg text-primary-600 dark:text-primary-400 font-medium mb-4">
               Senior Data Engineer
@@ -79,9 +79,9 @@ const Hero: React.FC = () => {
             <a href="#contact" className="btn-primary">
               Get In Touch
             </a>
-            <a href="#projects" className="btn-ghost">
+            {/* <a href="#projects" className="btn-ghost">
               View Projects
-            </a>
+            </a> */}
           </div>
 
           <div className="flex items-center gap-6 pt-4">
