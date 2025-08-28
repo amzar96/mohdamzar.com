@@ -175,7 +175,7 @@ const DataVisualization: React.FC = () => {
 
   return (
     <>
-      <div className="fixed top-4 right-4 z-10 flex gap-2">
+      <div className="fixed top-4 right-4 z-50 flex gap-2">
         <button
           onClick={() => handleColorSchemeChange('purple')}
           className={`px-3 py-1 rounded text-sm font-medium transition-all ${
