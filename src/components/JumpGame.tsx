@@ -7,7 +7,7 @@ const JumpGame: React.FC = () => {
   const [isJumping, setIsJumping] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [obstacles, setObstacles] = useState<Array<{ x: number; height: number; id: number }>>([]);
-  const gameLoopRef = useRef<number>();
+  const gameLoopRef = useRef<number | undefined>(undefined);
   const lastObstacleRef = useRef(0);
   const obstacleIdRef = useRef(0);
   const gameAreaRef = useRef<HTMLDivElement>(null);

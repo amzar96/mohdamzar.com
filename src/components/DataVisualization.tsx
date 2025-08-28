@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const DataVisualization: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const canvas = canvasRef.current;

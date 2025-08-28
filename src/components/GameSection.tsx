@@ -8,7 +8,7 @@ const GameSection: React.FC = () => {
       id="game"
       title="Take a Break"
       subtitle="Need a quick break from data? Try this fun mini-game!"
-      background="primary"
+      background="alternate"
     >
       <div className="max-w-2xl mx-auto">
         <JumpGame />
