@@ -1,8 +1,50 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+type ColorScheme = 'purple' | 'yellow';
+
+interface ColorPalette {
+  source: string;
+  transform: string;
+  sink: string;
+  connection: string;
+}
+
+const colorSchemes: Record<ColorScheme, ColorPalette> = {
+  purple: {
+    source: '#8B5CF6',
+    transform: '#A855F7', 
+    sink: '#7C3AED',
+    connection: '#8B5CF6'
+  },
+  yellow: {
+    source: '#F59E0B',
+    transform: '#FCD34D',
+    sink: '#D97706', 
+    connection: '#F59E0B'
+  }
+};
+
+const hexToRgb = (hex: string) => {
+  const result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : { r: 0, g: 0, b: 0 };
+};
 
 const DataVisualization: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(() => {
+    const saved = localStorage.getItem('dataVizColorScheme');
+    return (saved === 'purple' || saved === 'yellow') ? saved : 'purple';
+  });
+
+  const handleColorSchemeChange = (scheme: ColorScheme) => {
+    setColorScheme(scheme);
+    localStorage.setItem('dataVizColorScheme', scheme);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,6 +55,8 @@ const DataVisualization: React.FC = () => {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    const currentColors = colorSchemes[colorScheme];
 
     // Data nodes representing different data sources
     const nodes: Array<{
@@ -42,7 +86,7 @@ const DataVisualization: React.FC = () => {
         vx: (Math.random() - 0.5) * 0.3,
         vy: (Math.random() - 0.5) * 0.3,
         radius: type === 'source' ? 3 : type === 'transform' ? 2 : 4,
-        color: type === 'source' ? '#3B82F6' : type === 'transform' ? '#10B981' : '#8B5CF6',
+        color: type === 'source' ? currentColors.source : type === 'transform' ? currentColors.transform : currentColors.sink,
         alpha: Math.random() * 0.3 + 0.1,
         type
       });
@@ -71,7 +115,8 @@ const DataVisualization: React.FC = () => {
         const fromNode = nodes[connection.from];
         const toNode = nodes[connection.to];
         
-        ctx.strokeStyle = `rgba(59, 130, 246, ${connection.alpha})`;
+        const rgb = hexToRgb(currentColors.connection);
+        ctx.strokeStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${connection.alpha})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(fromNode.x, fromNode.y);
@@ -126,14 +171,38 @@ const DataVisualization: React.FC = () => {
       }
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [colorScheme]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1] opacity-20"
-      style={{ mixBlendMode: 'multiply' }}
-    />
+    <>
+      <div className="fixed top-4 right-4 z-10 flex gap-2">
+        <button
+          onClick={() => handleColorSchemeChange('purple')}
+          className={`px-3 py-1 rounded text-sm font-medium transition-all ${
+            colorScheme === 'purple'
+              ? 'bg-purple-600 text-white shadow-lg'
+              : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+          }`}
+        >
+          Purple
+        </button>
+        <button
+          onClick={() => handleColorSchemeChange('yellow')}
+          className={`px-3 py-1 rounded text-sm font-medium transition-all ${
+            colorScheme === 'yellow'
+              ? 'bg-yellow-600 text-white shadow-lg'
+              : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+          }`}
+        >
+          Yellow
+        </button>
+      </div>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-[-1] opacity-20"
+        style={{ mixBlendMode: 'multiply' }}
+      />
+    </>
   );
 };
 
