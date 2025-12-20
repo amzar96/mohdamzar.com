@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,9 +7,9 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
-    @apply font-primary bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+    @apply font-mono bg-gray-950 text-green-400;
     font-feature-settings: "rlig" 1, "calt" 1;
     margin: 0;
     min-height: 100vh;
@@ -20,16 +20,62 @@
   .glass-effect {
     @apply backdrop-blur-md bg-white/10 dark:bg-gray-800/10 border border-white/20 dark:border-gray-700/30;
   }
-  
+
   .gradient-text {
     @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
   }
-  
+
   .btn-primary {
     @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-xl font-medium hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
   }
-  
+
   .btn-ghost {
     @apply px-6 py-3 bg-transparent border border-primary-300 dark:border-primary-700 text-primary-600 dark:text-primary-400 rounded-xl font-medium hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300;
+  }
+
+  /* Custom Terminal Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #4ade80;
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #22c55e;
+  }
+
+  /* Terminal text selection */
+  ::selection {
+    background-color: #4ade8033;
+    color: #4ade80;
+  }
+
+  /* Keyboard key styling */
+  kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  /* Slide-in animation for quick info panel */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out forwards;
   }
 }
