@@ -7,33 +7,109 @@ interface TerminalLine {
   timestamp?: Date;
 }
 
+interface Theme {
+  name: string;
+  bg: string;
+  text: string;
+  accent: string;
+  secondary: string;
+  error: string;
+  border: string;
+}
+
+const themes: { [key: string]: Theme } = {
+  matrix: {
+    name: 'Matrix',
+    bg: 'bg-gray-950',
+    text: 'text-green-400',
+    accent: 'text-cyan-400',
+    secondary: 'text-yellow-400',
+    error: 'text-red-400',
+    border: 'border-green-500'
+  },
+  cyberpunk: {
+    name: 'Cyberpunk',
+    bg: 'bg-purple-950',
+    text: 'text-pink-400',
+    accent: 'text-cyan-400',
+    secondary: 'text-yellow-300',
+    error: 'text-red-400',
+    border: 'border-pink-500'
+  },
+  dracula: {
+    name: 'Dracula',
+    bg: 'bg-[#282a36]',
+    text: 'text-[#f8f8f2]',
+    accent: 'text-[#8be9fd]',
+    secondary: 'text-[#f1fa8c]',
+    error: 'text-[#ff5555]',
+    border: 'border-[#bd93f9]'
+  },
+  ocean: {
+    name: 'Ocean',
+    bg: 'bg-blue-950',
+    text: 'text-blue-200',
+    accent: 'text-cyan-300',
+    secondary: 'text-teal-300',
+    error: 'text-red-400',
+    border: 'border-blue-400'
+  },
+  hacker: {
+    name: 'Hacker',
+    bg: 'bg-black',
+    text: 'text-lime-400',
+    accent: 'text-lime-300',
+    secondary: 'text-green-300',
+    error: 'text-red-500',
+    border: 'border-lime-500'
+  }
+};
+
 const Terminal: React.FC = () => {
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [showQuickInfo, setShowQuickInfo] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState<string>('matrix');
+  const [isTyping, setIsTyping] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
   const currentYear = new Date().getFullYear();
   const startYear = 2019;
   const workingYears = currentYear - startYear;
+  const theme = themes[currentTheme];
 
-  // Welcome message
+  // Welcome message with typing animation
   useEffect(() => {
-    const welcomeMessages: TerminalLine[] = [
-      { type: 'output', content: '╔═══════════════════════════════════════════════════════════════╗' },
-      { type: 'output', content: '║                    Welcome to Amzar\'s Terminal                ║' },
-      { type: 'output', content: '╚═══════════════════════════════════════════════════════════════╝' },
-      { type: 'output', content: '' },
-      { type: 'output', content: 'Senior Data Engineer | Kuala Lumpur, Malaysia' },
-      { type: 'output', content: `Building data solutions with ${workingYears}+ years of experience` },
-      { type: 'output', content: '' },
-      { type: 'output', content: 'Type "help" to see available commands' },
-      { type: 'output', content: '' },
+    const welcomeMessages = [
+      '╔═══════════════════════════════════════════════════════════════╗',
+      '║                    Welcome to Amzar\'s Terminal                ║',
+      '╚═══════════════════════════════════════════════════════════════╝',
+      '',
+      'Senior Data Engineer | Kuala Lumpur, Malaysia',
+      `Building data solutions with ${workingYears}+ years of experience`,
+      '',
+      'Type "help" to see available commands',
+      '',
     ];
-    setLines(welcomeMessages);
+
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < welcomeMessages.length) {
+        setLines(prev => [...prev, {
+          type: 'output',
+          content: welcomeMessages[currentIndex]
+        }]);
+        currentIndex++;
+      } else {
+        setIsTyping(false);
+        clearInterval(typingInterval);
+      }
+    }, 100);
+
+    return () => clearInterval(typingInterval);
   }, [workingYears]);
 
   // Auto-focus input when terminal is clicked
@@ -55,17 +131,31 @@ const Terminal: React.FC = () => {
 
   const getHelp = (): ReactNode => {
     return (
-      <div className="space-y-2">
-        <div className="text-green-400 font-semibold">Available Commands:</div>
+      <div className="space-y-3">
+        <div className={`${theme.text} font-semibold`}>Available Commands:</div>
         <div className="ml-4 space-y-1">
-          <div><span className="text-cyan-400">about</span>     - Learn more about me</div>
-          <div><span className="text-cyan-400">experience</span> - View my work experience</div>
-          <div><span className="text-cyan-400">skills</span>     - List my technical skills</div>
-          <div><span className="text-cyan-400">contact</span>   - Get my contact information</div>
-          <div><span className="text-cyan-400">social</span>    - View my social media links</div>
-          <div><span className="text-cyan-400">projects</span>  - See my projects</div>
-          <div><span className="text-cyan-400">clear</span>     - Clear the terminal</div>
-          <div><span className="text-cyan-400">help</span>      - Show this help message</div>
+          <div className="text-gray-400 text-sm mb-2">📋 Information</div>
+          <div><span className={theme.accent}>about</span>     - Learn more about me</div>
+          <div><span className={theme.accent}>experience</span> - View my work experience</div>
+          <div><span className={theme.accent}>skills</span>     - List my technical skills</div>
+          <div><span className={theme.accent}>contact</span>   - Get my contact information</div>
+          <div><span className={theme.accent}>social</span>    - View my social media links</div>
+          <div><span className={theme.accent}>projects</span>  - See my projects</div>
+
+          <div className="text-gray-400 text-sm mt-3 mb-2">🎨 Customization</div>
+          <div><span className={theme.accent}>theme</span>     - Change terminal theme</div>
+
+          <div className="text-gray-400 text-sm mt-3 mb-2">🎮 Fun Stuff</div>
+          <div><span className={theme.accent}>whoami</span>    - Who are you?</div>
+          <div><span className={theme.accent}>date</span>      - Show current date and time</div>
+          <div><span className={theme.accent}>quote</span>     - Get a random quote</div>
+          <div><span className={theme.accent}>joke</span>      - Hear a programming joke</div>
+          <div><span className={theme.accent}>pwd</span>       - Print working directory</div>
+          <div><span className={theme.accent}>ls</span>        - List directory contents</div>
+
+          <div className="text-gray-400 text-sm mt-3 mb-2">⚙️ System</div>
+          <div><span className={theme.accent}>clear</span>     - Clear the terminal</div>
+          <div><span className={theme.accent}>help</span>      - Show this help message</div>
         </div>
       </div>
     );
@@ -300,6 +390,101 @@ const Terminal: React.FC = () => {
       case 'projects':
         setLines(prev => [...prev, { type: 'output', content: getProjects() }]);
         break;
+      case 'theme':
+        const themeList = Object.keys(themes).map((key, index) =>
+          `${index + 1}. ${themes[key].name}${key === currentTheme ? ' (current)' : ''}`
+        ).join('\n');
+        setLines(prev => [...prev, {
+          type: 'output',
+          content: (
+            <div className="space-y-2">
+              <div className={`${theme.text} font-semibold`}>Available Themes:</div>
+              <div className="ml-4 whitespace-pre-line">{themeList}</div>
+              <div className="mt-3 text-gray-400 text-sm">
+                Type: <span className={theme.accent}>theme [number]</span> to change theme
+              </div>
+            </div>
+          )
+        }]);
+        break;
+      case 'theme 1':
+        setCurrentTheme('matrix');
+        setLines(prev => [...prev, { type: 'output', content: '🎨 Theme changed to Matrix!' }]);
+        break;
+      case 'theme 2':
+        setCurrentTheme('cyberpunk');
+        setLines(prev => [...prev, { type: 'output', content: '🎨 Theme changed to Cyberpunk!' }]);
+        break;
+      case 'theme 3':
+        setCurrentTheme('dracula');
+        setLines(prev => [...prev, { type: 'output', content: '🎨 Theme changed to Dracula!' }]);
+        break;
+      case 'theme 4':
+        setCurrentTheme('ocean');
+        setLines(prev => [...prev, { type: 'output', content: '🎨 Theme changed to Ocean!' }]);
+        break;
+      case 'theme 5':
+        setCurrentTheme('hacker');
+        setLines(prev => [...prev, { type: 'output', content: '🎨 Theme changed to Hacker!' }]);
+        break;
+      case 'whoami':
+        setLines(prev => [...prev, {
+          type: 'output',
+          content: "You're viewing Amzar's terminal portfolio! 🚀\nBut the real question is... who are YOU? 🤔"
+        }]);
+        break;
+      case 'date':
+        const now = new Date();
+        setLines(prev => [...prev, {
+          type: 'output',
+          content: `📅 ${now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}\n⏰ ${now.toLocaleTimeString('en-US')}`
+        }]);
+        break;
+      case 'pwd':
+        setLines(prev => [...prev, { type: 'output', content: '/home/amzar/portfolio' }]);
+        break;
+      case 'ls':
+        setLines(prev => [...prev, {
+          type: 'output',
+          content: (
+            <div className="space-y-1">
+              <div className={theme.accent}>📁 about/</div>
+              <div className={theme.accent}>📁 experience/</div>
+              <div className={theme.accent}>📁 skills/</div>
+              <div className={theme.accent}>📁 projects/</div>
+              <div className={theme.accent}>📁 contact/</div>
+              <div className="text-gray-400 mt-2 text-sm">Tip: Try running these as commands!</div>
+            </div>
+          )
+        }]);
+        break;
+      case 'quote':
+        const quotes = [
+          "\"Code is like humor. When you have to explain it, it's bad.\" - Cory House",
+          "\"First, solve the problem. Then, write the code.\" - John Johnson",
+          "\"Experience is the name everyone gives to their mistakes.\" - Oscar Wilde",
+          "\"Knowledge is power.\" - Francis Bacon",
+          "\"Data is the new oil.\" - Clive Humby",
+          "\"In God we trust. All others must bring data.\" - W. Edwards Deming",
+          "\"Without data, you're just another person with an opinion.\" - W. Edwards Deming",
+          "\"The goal is to turn data into information, and information into insight.\" - Carly Fiorina"
+        ];
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        setLines(prev => [...prev, { type: 'output', content: randomQuote }]);
+        break;
+      case 'joke':
+        const jokes = [
+          "Why do programmers prefer dark mode?\nBecause light attracts bugs! 🐛",
+          "Why do data engineers always carry a ladder?\nTo reach the higher levels of abstraction! 🪜",
+          "How many programmers does it take to change a light bulb?\nNone. It's a hardware problem! 💡",
+          "Why did the database administrator leave his wife?\nShe had one-to-many relationships! 💔",
+          "What's a data scientist's favorite type of music?\nAlgo-rhythm! 🎵",
+          "Why do Python programmers wear glasses?\nBecause they can't C! 👓",
+          "What did the router say to the doctor?\nIt hurts when IP! 🏥"
+        ];
+        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+        setLines(prev => [...prev, { type: 'output', content: randomJoke }]);
+        break;
       case 'clear':
       case 'cls':
         setLines([]);
@@ -349,10 +534,10 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-green-400 font-mono pb-20 md:pb-24">
+    <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono pb-20 md:pb-24 transition-colors duration-300`}>
       <div className="max-w-6xl mx-auto p-4 md:p-8">
         {/* Terminal Window */}
-        <div className="bg-gray-900 rounded-lg shadow-2xl border border-gray-800 overflow-hidden">
+        <div className="bg-gray-900 rounded-lg shadow-2xl border-2 border-gray-800 overflow-hidden">
           {/* Terminal Header */}
           <div className="bg-gray-800 px-4 py-3 flex items-center justify-between border-b border-gray-700">
             <div className="flex items-center gap-2">
@@ -361,7 +546,7 @@ const Terminal: React.FC = () => {
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
             <div className="text-gray-400 text-sm font-medium">amzar@terminal:~</div>
-            <div className="w-16"></div>
+            <div className="text-gray-500 text-xs">{theme.name}</div>
           </div>
 
           {/* Terminal Content */}
@@ -372,12 +557,12 @@ const Terminal: React.FC = () => {
             {lines.map((line, index) => (
               <div key={index} className={`mb-2 ${
                 line.type === 'command' ? 'text-white' :
-                line.type === 'error' ? 'text-red-400' :
-                'text-green-400'
+                line.type === 'error' ? theme.error :
+                theme.text
               }`}>
                 {line.type === 'command' ? (
                   <div className="flex items-start gap-2">
-                    <span className="text-cyan-400">❯</span>
+                    <span className={theme.accent}>❯</span>
                     <span className="flex-1">{line.content}</span>
                   </div>
                 ) : (
@@ -388,15 +573,16 @@ const Terminal: React.FC = () => {
 
             {/* Input Line */}
             <div className="flex items-center gap-2 mt-2">
-              <span className="text-cyan-400">❯</span>
+              <span className={theme.accent}>❯</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent outline-none text-white caret-green-400"
+                className={`flex-1 bg-transparent outline-none text-white ${theme.text === 'text-green-400' ? 'caret-green-400' : theme.text.replace('text-', 'caret-')}`}
                 autoFocus
+                disabled={isTyping}
                 spellCheck={false}
               />
             </div>
@@ -430,7 +616,7 @@ const Terminal: React.FC = () => {
 
       {/* Quick Info Panel */}
       {showQuickInfo && (
-        <div className="fixed bottom-24 md:bottom-28 right-20 md:right-24 w-80 md:w-96 bg-gray-900 border-2 border-green-500 rounded-lg shadow-2xl p-6 z-40 animate-slide-in">
+        <div className={`fixed bottom-24 md:bottom-28 right-20 md:right-24 w-80 md:w-96 bg-gray-900 border-2 ${theme.border} rounded-lg shadow-2xl p-6 z-40 animate-slide-in`}>
           <div className="space-y-4">
             <div className="flex items-center gap-4 pb-4 border-b border-gray-700">
               <img
