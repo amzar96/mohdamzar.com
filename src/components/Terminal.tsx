@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
 interface TerminalLine {
@@ -66,6 +67,7 @@ const themes: { [key: string]: Theme } = {
 };
 
 const Terminal: React.FC = () => {
+  const navigate = useNavigate();
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [currentInput, setCurrentInput] = useState('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -141,6 +143,9 @@ const Terminal: React.FC = () => {
           <div><span className={theme.accent}>contact</span>   - Get my contact information</div>
           <div><span className={theme.accent}>social</span>    - View my social media links</div>
           <div><span className={theme.accent}>projects</span>  - See my projects</div>
+
+          <div className="text-gray-400 text-sm mt-3 mb-2">🛠️ Tools</div>
+          <div><span className={theme.accent}>utils</span>     - Open developer utilities page</div>
 
           <div className="text-gray-400 text-sm mt-3 mb-2">🎨 Customization</div>
           <div><span className={theme.accent}>theme</span>     - Change terminal theme</div>
@@ -389,6 +394,10 @@ const Terminal: React.FC = () => {
         break;
       case 'projects':
         setLines(prev => [...prev, { type: 'output', content: getProjects() }]);
+        break;
+      case 'utils':
+        setLines(prev => [...prev, { type: 'output', content: '🛠️ Opening developer utilities...' }]);
+        setTimeout(() => navigate('/utils'), 500);
         break;
       case 'theme':
         const themeList = Object.keys(themes).map((key, index) =>
