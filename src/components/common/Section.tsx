@@ -1,6 +1,6 @@
 import React from 'react';
 import type { ReactNode } from 'react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 interface SectionProps {
   id?: string;
@@ -50,4 +50,5 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
+export { Section };
 export default Section;

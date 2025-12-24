@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './Section';
+import Section from './common/Section';
 import JumpGame from './JumpGame';
 
 const GameSection: React.FC = () => {

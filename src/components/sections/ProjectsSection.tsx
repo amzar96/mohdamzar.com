@@ -1,24 +1,12 @@
 import React from 'react';
-import Section from './common/Section';
+import { Section } from '../common/Section';
+import type { Project } from '../../types/config';
 
-const ProjectsSection: React.FC = () => {
-  const projects = [
-    {
-      title: "Data Pipeline Automation",
-      description: "Automated ETL pipeline processing millions of records daily with real-time monitoring and alerting.",
-      technologies: ["Python", "Apache Airflow", "PostgreSQL", "Redis"],
-      status: "Production",
-      link: "#"
-    },
-    {
-      title: "Analytics Dashboard",
-      description: "Interactive business intelligence dashboard providing real-time insights for stakeholders.",
-      technologies: ["React", "D3.js", "FastAPI", "Docker"],
-      status: "In Development",
-      link: "#"
-    }
-  ];
+interface ProjectsSectionProps {
+  projects: Project[];
+}
 
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   return (
     <Section
       id="projects"
@@ -33,21 +21,21 @@ const ProjectsSection: React.FC = () => {
                 {project.title}
               </h3>
               <span className={`px-3 py-1 text-xs rounded-full font-medium ${
-                project.status === 'Production' 
+                project.status === 'Production'
                   ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
                   : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
               }`}>
                 {project.status}
               </span>
             </div>
-            
+
             <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
               {project.description}
             </p>
-            
+
             <div className="flex flex-wrap gap-2 mb-6">
               {project.technologies.map((tech, techIndex) => (
-                <span 
+                <span
                   key={techIndex}
                   className="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm rounded-lg font-medium"
                 >
@@ -55,8 +43,8 @@ const ProjectsSection: React.FC = () => {
                 </span>
               ))}
             </div>
-            
-            <a 
+
+            <a
               href={project.link}
               className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
             >
@@ -105,5 +93,3 @@ const ProjectsSection: React.FC = () => {
     </Section>
   );
 };
-
-export default ProjectsSection;
