@@ -1,0 +1,157 @@
+profile:
+  name: Amzar
+  pronouns: he/him
+  title: Senior Data Engineer
+  current_role: Data & Analytics Engineer
+  email: me@mohdamzar.com
+  location: Kuala Lumpur, Malaysia
+  location_link: https://maps.app.goo.gl/Ref9cGLCKUqezGaAA
+  image: https://personal-website-amzar.s3-ap-southeast-1.amazonaws.com/img/personal2.png
+  start_year: 2019
+  description: |
+    With over {years} years of experience in Python programming, I specialize in data engineering.
+    My focus lies in utilizing the Python stack for back-end development, deploying applications,
+    and creating automation solutions aimed at reducing manual workload.
+  current_description: |
+    Now, I am a Data & Analytics Engineer working on data operation, including managing the ETL/ELT,
+    database, and business analytics using multiple cloud and open-source technologies. And yes, I code every day!
+
+social:
+  github: https://github.com/amzar96
+  linkedin: https://www.linkedin.com/in/amzar96/
+  stackoverflow: https://stackoverflow.com/users/9816541/amzar/
+  behance: https://www.behance.net/amzar96
+
+experience:
+  - title: Senior Data Engineer
+    company: AEON Bank
+    period: Sep 2024 - Present
+    location: Kuala Lumpur · Hybrid
+    description: ""
+    technologies:
+      - Python
+      - dbt
+      - Terraform
+      - AWS
+      - Kubernetes
+      - Git
+      - SQL
+  - title: Analytics Engineer & Platform Engineer
+    company: Be U by Bank Islam
+    period: Jul 2022 - Sep 2024 · 2 yrs 3 mos
+    location: Kuala Lumpur · Hybrid
+    description: ""
+    technologies:
+      - Python
+      - AWS
+      - Kubernetes
+      - SQL
+      - Git
+  - title: Performance & System Analyst
+    company: DHL eCommerce Solutions
+    period: Sep 2020 - Jul 2022 · 1 yr 11 mos
+    location: Puchong · Hybrid
+    description: ""
+    technologies:
+      - Python
+      - PostgreSQL
+      - Google Data Studio
+      - Splunk
+      - Tableau
+      - Power BI
+      - Selenium
+      - Bash
+      - Linux
+
+projects:
+  - title: Data Pipeline Automation
+    description: Automated ETL pipeline processing millions of records daily with real-time monitoring and alerting.
+    technologies:
+      - Python
+      - Apache Airflow
+      - PostgreSQL
+      - Redis
+    status: Production
+    link: "#"
+  - title: Analytics Dashboard
+    description: Interactive business intelligence dashboard providing real-time insights for stakeholders.
+    technologies:
+      - React
+      - D3.js
+      - FastAPI
+      - Docker
+    status: In Development
+    link: "#"
+
+tech_logos:
+  Python:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg
+    alt: Python
+  dbt:
+    src: https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png
+    alt: dbt
+  Terraform:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg
+    alt: Terraform
+  AWS:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg
+    alt: AWS
+  Git:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg
+    alt: Git
+  SQL:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg
+    alt: SQL
+  PostgreSQL:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg
+    alt: PostgreSQL
+  Kubernetes:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-original.svg
+    alt: Kubernetes
+  SQLAlchemy:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlalchemy/sqlalchemy-original.svg
+    alt: SQLAlchemy
+  Google Data Studio:
+    src: https://www.gstatic.com/analytics-suite/header/suite/v2/ic_data_studio.svg
+    alt: Google Data Studio
+  Splunk:
+    src: https://img.icons8.com/?size=512&id=49188&format=png
+    alt: Splunk
+  Tableau:
+    src: https://logos-world.net/wp-content/uploads/2021/10/Tableau-Symbol.png
+    alt: Tableau
+  Power BI:
+    src: https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg
+    alt: Power BI
+  Selenium:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg
+    alt: Selenium
+  Bash:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg
+    alt: Bash
+  Linux:
+    src: https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg
+    alt: Linux
+
+contact:
+  methods:
+    - icon_type: email
+      title: Email
+      value: me@mohdamzar.com
+      link: mailto:me@mohdamzar.com
+    - icon_type: linkedin
+      title: LinkedIn
+      value: linkedin.com/in/amzar96
+      link: https://www.linkedin.com/in/amzar96/
+    - icon_type: github
+      title: GitHub
+      value: github.com/amzar96
+      link: https://github.com/amzar96
+    - icon_type: location
+      title: Location
+      value: Kuala Lumpur, Malaysia
+      link: https://maps.app.goo.gl/Ref9cGLCKUqezGaAA
+  form_action: https://formsubmit.co/me@mohdamzar.com
+  message: |
+    I'm always interested in discussing data engineering projects,
+    technology trends, or potential collaborations. Don't hesitate to reach out!

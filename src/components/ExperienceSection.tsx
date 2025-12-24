@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './Section';
+import Section from './common/Section';
 
 const ExperienceSection: React.FC = () => {
   const techLogos: { [key: string]: { src: string; alt: string } } = {

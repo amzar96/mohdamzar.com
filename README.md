@@ -1,113 +1,220 @@
 # mohdamzar.com - Personal Website
 
-Modern personal website built with React, TypeScript, and Tailwind CSS featuring a beautiful purple theme and dark mode support.
+A modern, modular personal website built with React, TypeScript, and Vite. Features a terminal-based interface, config-driven content management, and Docker support.
 
-## 🚀 Features
+## Features
 
-- **Modern Design**: Beautiful light purple color scheme with gradients
-- **Dark Mode**: Full dark mode support with system preference detection
-- **Responsive**: Mobile-first design that works on all screen sizes
-- **Animations**: Smooth scroll-triggered animations and micro-interactions
-- **TypeScript**: Fully typed with TypeScript for better development experience
-- **Fast**: Built with Vite for lightning-fast development and builds
+- **Config-Driven Content**: All personal data centralized in a single YAML file
+- **Modular Architecture**: Clean, maintainable folder structure
+- **Docker Support**: Production-ready containerization with optimized caching
+- **Comprehensive Testing**: Test suite with Vitest
+- **Terminal Interface**: Interactive command-line themed homepage
+- **Developer Utilities**: Built-in tools for developers
+- **Dark Mode**: Full dark mode support with multiple themes
+- **Responsive Design**: Mobile-first approach
 
-## 🛠️ Tech Stack
-
-- **React 19** - Latest React with modern features
-- **TypeScript** - Type safety and better developer experience
-- **Tailwind CSS** - Utility-first CSS framework
-- **Vite** - Next generation frontend tooling
-- **Framer Motion** - Production-ready motion library for React
-
-## 📦 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
+## Quick Start
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd react-website
-
-# Install dependencies
 make install
-# or
-npm install
-
-# Start development server
-make dev
-# or
-npm run dev
-```
-
-## 🔧 Available Commands
-
-All commands are available via Makefile for convenience:
-
-```bash
-make help          # Show all available commands
-make install       # Install dependencies
-make dev          # Start development server
-make build        # Build for production
-make preview      # Preview production build
-make clean        # Clean build artifacts
-make lint         # Run ESLint
-make typecheck    # Run TypeScript type checking
-make format       # Format code with Prettier
-make deploy-vercel # Deploy to Vercel
-```
-
-## 🚀 Deployment
-
-### Local Development
-```bash
 make dev
 ```
+
 Visit `http://localhost:5173`
 
-### Vercel Deployment
-```bash
-make deploy-vercel
+## Configuration
+
+All personal data is centralized in `public/config.yaml`. Simply update this file to customize your site:
+
+### Profile Information
+```yaml
+profile:
+  name: Your Name
+  pronouns: he/him
+  title: Your Title
+  email: your@email.com
+  location: Your City, Country
+  image: https://your-image-url.com/photo.png
+  start_year: 2019
 ```
 
-## 📁 Project Structure
+### Social Links
+```yaml
+social:
+  github: https://github.com/username
+  linkedin: https://linkedin.com/in/username
+  stackoverflow: https://stackoverflow.com/users/id
+  behance: https://behance.net/username
+```
+
+### Experience
+```yaml
+experience:
+  - title: Job Title
+    company: Company Name
+    period: Jan 2020 - Present
+    location: City, Country
+    technologies:
+      - Python
+      - AWS
+      - Docker
+```
+
+### Projects
+```yaml
+projects:
+  - title: Project Name
+    description: Project description
+    technologies:
+      - React
+      - TypeScript
+    status: Production
+    link: https://project-url.com
+```
+
+## Available Commands
+
+```bash
+make help          Show available commands
+make install       Install dependencies
+make dev          Start development server
+make build        Build for production
+make test         Run tests
+make test-ui      Run tests with UI
+make lint         Run linter
+make typecheck    Run TypeScript type checking
+make clean        Remove build artifacts
+make docker-build Build Docker image
+make docker-run   Run Docker container
+make docker-stop  Stop Docker container
+```
+
+## Docker
+
+Build and run with Docker:
+
+```bash
+make docker-build
+make docker-run
+```
+
+The application will be available at `http://localhost:3000`
+
+### Docker Features
+
+- **Multi-stage builds** for optimized image size
+- **Layer caching** for faster rebuilds
+- **Production-ready** with serve static files
+- **Minimal footprint** using Alpine Linux
+
+## Project Structure
 
 ```
 src/
-├── components/          # React components
-│   ├── Header.tsx      # Navigation header with theme toggle
-│   ├── Hero.tsx        # Hero section with profile
-│   ├── ExperienceSection.tsx
-│   ├── ProjectsSection.tsx
-│   ├── ContactSection.tsx
-│   ├── Footer.tsx
-│   └── Section.tsx     # Reusable section wrapper
-├── hooks/              # Custom React hooks
-│   ├── useTheme.ts     # Dark mode theme management
-│   └── useScrollAnimation.ts # Scroll-triggered animations
-├── App.tsx             # Main app component
-├── main.tsx           # App entry point
-└── index.css          # Global styles and Tailwind imports
+├── config/           # Config loader and utilities
+│   └── loader.ts     # YAML config loader
+├── types/            # TypeScript type definitions
+│   └── config.ts     # Config types
+├── hooks/            # Custom React hooks
+│   ├── useTheme.ts
+│   ├── useConfig.ts
+│   └── useScrollAnimation.ts
+├── components/
+│   ├── common/       # Reusable UI components
+│   │   ├── Section.tsx
+│   │   ├── Icons.tsx
+│   │   └── Loading.tsx
+│   ├── sections/     # Config-driven page sections
+│   │   ├── HeroSection.tsx
+│   │   ├── ExperienceSection.tsx
+│   │   ├── ProjectsSection.tsx
+│   │   └── ContactSection.tsx
+│   ├── Terminal.tsx  # Terminal interface
+│   ├── Header.tsx
+│   └── Footer.tsx
+├── pages/            # Page components
+│   ├── Home.tsx      # Config-driven home page
+│   └── Utils.tsx     # Developer utilities
+└── App.tsx           # Main app with routing
+
+tests/
+└── __tests__/        # Test files
+    ├── config.test.ts
+    └── hooks.test.tsx
+
+public/
+└── config.yaml       # Site configuration file
+
+Dockerfile            # Production Docker image
+.dockerignore        # Docker build exclusions
+Makefile             # Build automation
+vitest.config.ts     # Test configuration
 ```
 
-## 🎨 Customization
+## Routes
 
-### Colors
-The color scheme is defined in `tailwind.config.js`:
-- Primary: Purple shades (50-900)
-- Secondary: Violet shades (50-900)
+- `/` - Terminal interface (interactive CLI theme)
+- `/home` - Traditional home page (config-driven)
+- `/utils` - Developer utilities
 
-### Fonts
-- Primary: Inter (headings and body text)
-- Mono: JetBrains Mono (code blocks)
+## Testing
 
-### Content
-Update your personal information in:
-- `src/components/Hero.tsx` - Profile and introduction
-- `src/components/ExperienceSection.tsx` - Work experience
-- `src/components/ProjectsSection.tsx` - Projects showcase
-- `src/components/ContactSection.tsx` - Contact information
+Run tests with:
+
+```bash
+npm run test        # Run in watch mode
+npm run test:run    # Run once
+npm run test:ui     # Run with UI
+```
+
+All tests are located in `tests/__tests__/`
+
+## Technology Stack
+
+### Frontend
+- **React 19** - Latest React with modern features
+- **TypeScript 5.8** - Type safety and better DX
+- **Tailwind CSS 3.4** - Utility-first CSS
+- **React Router 7** - Client-side routing
+
+### Build Tools
+- **Vite 7** - Next-gen frontend tooling
+- **PostCSS** - CSS transformations
+- **Autoprefixer** - Automatic vendor prefixes
+
+### Testing
+- **Vitest 4** - Fast unit testing
+- **Testing Library** - React testing utilities
+- **Happy DOM** - Lightweight DOM implementation
+
+### Development
+- **ESLint 9** - Code quality
+- **TypeScript ESLint** - TS-specific linting
+- **js-yaml** - YAML config parsing
+
+## Building for Production
+
+```bash
+make build
+```
+
+Build artifacts will be in the `dist/` directory and can be served with any static file server.
+
+## Environment Requirements
+
+- Node.js >= 22.0.0
+- npm or compatible package manager
+- Docker (optional, for containerization)
+
+## Development Workflow
+
+1. **Update Configuration**: Edit `public/config.yaml` with your details
+2. **Install Dependencies**: Run `make install`
+3. **Start Dev Server**: Run `make dev`
+4. **Run Tests**: Run `make test` to ensure everything works
+5. **Build**: Run `make build` to create production build
+6. **Deploy**: Use Docker or deploy `dist/` to any static host
+
+## License
+
+MIT
