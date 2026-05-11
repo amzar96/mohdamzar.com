@@ -5,6 +5,7 @@ import { Loading } from './components/common/Loading';
 import Terminal from './components/Terminal';
 import { Home } from './pages/Home';
 import Utils from './pages/Utils';
+import { CV } from './pages/CV';
 
 const App: React.FC = () => {
   const { config, loading, error } = useConfig();
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Terminal />} />
         <Route path="/home" element={<Home config={config} />} />
         <Route path="/utils" element={<Utils />} />
+        <Route path="/cv" element={<CV />} />
       </Routes>
     </Router>
   );

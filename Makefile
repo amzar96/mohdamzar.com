@@ -4,7 +4,7 @@ help:
 	@echo "install       - Install dependencies"
 	@echo "dev          - Start development server"
 	@echo "build        - Build for production"
-	@echo "test         - Run tests"
+	@echo "test         - Run tests in Docker"
 	@echo "test-ui      - Run tests with UI"
 	@echo "lint         - Run linter"
 	@echo "typecheck    - Run TypeScript type checking"
@@ -23,7 +23,7 @@ build:
 	npm run build
 
 test:
-	npm run test:run
+	docker build --target test --progress=plain -t mohdamzar-test . 2>&1
 
 test-ui:
 	npm run test:ui
@@ -40,7 +40,7 @@ clean:
 docker-build:
 	docker build -t mohdamzar-website:latest .
 
-docker-run:
+docker-run: docker-build
 	docker run -d -p 3000:3000 --name mohdamzar-web mohdamzar-website:latest
 
 docker-stop:
