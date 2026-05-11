@@ -27,23 +27,23 @@ const InputOutput = ({
   <>
     {input !== undefined && onInputChange && (
       <div>
-        <label className="block text-sm font-medium text-primary-300 mb-2">{inputLabel}</label>
+        <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">{inputLabel}</label>
         <textarea
           value={input}
           onChange={(e) => onInputChange(e.target.value)}
           placeholder={inputPlaceholder}
           rows={rows}
-          className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono text-sm"
+          className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
         />
       </div>
     )}
     <div>
-      <label className="block text-sm font-medium text-primary-300 mb-2">{outputLabel}</label>
+      <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">{outputLabel}</label>
       <textarea
         value={output}
         readOnly={readOnly}
         rows={rows}
-        className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono text-sm cursor-pointer"
+        className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm cursor-pointer"
         onClick={(e) => {
           const target = e.target as HTMLTextAreaElement;
           target.select();
@@ -69,27 +69,27 @@ const Home = () => {
       <div className="text-center max-w-2xl px-8">
         <div className="mb-8">
           <h1 className="text-5xl font-bold gradient-text mb-4">Developer Utilities</h1>
-          <p className="text-xl text-gray-400">
+          <p className="text-xl text-gray-500 dark:text-gray-400">
             A collection of handy tools to make your development workflow easier
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-gray-900 border border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
             <div className="text-3xl mb-2">🆔</div>
-            <div className="text-sm text-gray-300">UUID Generator</div>
+            <div className="text-sm text-gray-700 dark:text-gray-300">UUID Generator</div>
           </div>
-          <div className="bg-gray-900 border border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
             <div className="text-3xl mb-2">📝</div>
-            <div className="text-sm text-gray-300">JSON Tools</div>
+            <div className="text-sm text-gray-700 dark:text-gray-300">JSON Tools</div>
           </div>
-          <div className="bg-gray-900 border border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
             <div className="text-3xl mb-2">🔐</div>
-            <div className="text-sm text-gray-300">Encoders</div>
+            <div className="text-sm text-gray-700 dark:text-gray-300">Encoders</div>
           </div>
-          <div className="bg-gray-900 border border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
             <div className="text-3xl mb-2">🌐</div>
-            <div className="text-sm text-gray-300">IP Checker</div>
+            <div className="text-sm text-gray-700 dark:text-gray-300">IP Checker</div>
           </div>
         </div>
 
@@ -130,10 +130,10 @@ const UUIDGenerator = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">UUID Generator</h2>
-        <p className="text-gray-400">Generate universally unique identifiers (UUID v4 or v7)</p>
+        <p className="text-gray-500 dark:text-gray-400">Generate universally unique identifiers (UUID v4 or v7)</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -144,7 +144,7 @@ const UUIDGenerator = () => {
                 onChange={(e) => setUuidVersion(e.target.value as 'v4')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">UUID v4 (Random)</span>
+              <span className="text-gray-700 dark:text-gray-300">UUID v4 (Random)</span>
             </label>
             <label className="flex items-center space-x-2">
               <input
@@ -154,7 +154,7 @@ const UUIDGenerator = () => {
                 onChange={(e) => setUuidVersion(e.target.value as 'v7')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">UUID v7 (Timestamp)</span>
+              <span className="text-gray-700 dark:text-gray-300">UUID v7 (Timestamp)</span>
             </label>
           </div>
           <button
@@ -260,13 +260,13 @@ const JSONGenerator = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">Random JSON Generator</h2>
-        <p className="text-gray-400">Generate random JSON data based on a schema</p>
+        <p className="text-gray-500 dark:text-gray-400">Generate random JSON data based on a schema</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-300 mb-2">
+            <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
               Schema (JSON format)
             </label>
             <p className="text-xs text-gray-500 mb-2">
@@ -276,11 +276,11 @@ const JSONGenerator = () => {
               value={jsonSchema}
               onChange={(e) => setJsonSchema(e.target.value)}
               rows={10}
-              className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono text-sm"
+              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-primary-300 mb-2">
+            <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
               Number of objects
             </label>
             <input
@@ -289,7 +289,7 @@ const JSONGenerator = () => {
               max="100"
               value={jsonCount}
               onChange={(e) => setJsonCount(parseInt(e.target.value) || 1)}
-              className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500"
+              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
             />
           </div>
           <button
@@ -334,10 +334,10 @@ const Base64Tool = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">Base64 Encoder/Decoder</h2>
-        <p className="text-gray-400">Encode or decode Base64 strings</p>
+        <p className="text-gray-500 dark:text-gray-400">Encode or decode Base64 strings</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -348,7 +348,7 @@ const Base64Tool = () => {
                 onChange={(e) => setBase64Mode(e.target.value as 'encode')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">Encode</span>
+              <span className="text-gray-700 dark:text-gray-300">Encode</span>
             </label>
             <label className="flex items-center space-x-2">
               <input
@@ -358,7 +358,7 @@ const Base64Tool = () => {
                 onChange={(e) => setBase64Mode(e.target.value as 'decode')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">Decode</span>
+              <span className="text-gray-700 dark:text-gray-300">Decode</span>
             </label>
           </div>
           <InputOutput
@@ -402,10 +402,10 @@ const URLTool = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">URL Encoder/Decoder</h2>
-        <p className="text-gray-400">Encode or decode URL components</p>
+        <p className="text-gray-500 dark:text-gray-400">Encode or decode URL components</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -416,7 +416,7 @@ const URLTool = () => {
                 onChange={(e) => setUrlMode(e.target.value as 'encode')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">Encode</span>
+              <span className="text-gray-700 dark:text-gray-300">Encode</span>
             </label>
             <label className="flex items-center space-x-2">
               <input
@@ -426,7 +426,7 @@ const URLTool = () => {
                 onChange={(e) => setUrlMode(e.target.value as 'decode')}
                 className="text-primary-500"
               />
-              <span className="text-gray-300">Decode</span>
+              <span className="text-gray-700 dark:text-gray-300">Decode</span>
             </label>
           </div>
           <InputOutput
@@ -476,10 +476,10 @@ const HashGenerator = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">SHA-256 Hash Generator</h2>
-        <p className="text-gray-400">Generate SHA-256 hash from text</p>
+        <p className="text-gray-500 dark:text-gray-400">Generate SHA-256 hash from text</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <InputOutput
             input={hashInput}
@@ -524,20 +524,20 @@ const TimestampConverter = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">Timestamp Converter</h2>
-        <p className="text-gray-400">Convert Unix timestamp to readable date</p>
+        <p className="text-gray-500 dark:text-gray-400">Convert Unix timestamp to readable date</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-300 mb-2">
+            <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
               Unix Timestamp (milliseconds)
             </label>
             <input
               type="text"
               value={timestamp}
               onChange={(e) => setTimestamp(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono"
+              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono"
             />
           </div>
           <div className="flex space-x-2">
@@ -619,13 +619,13 @@ const ColorConverter = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">Color Converter</h2>
-        <p className="text-gray-400">Convert HEX color to RGB and HSL</p>
+        <p className="text-gray-500 dark:text-gray-400">Convert HEX color to RGB and HSL</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-300 mb-2">
+            <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
               HEX Color
             </label>
             <div className="flex space-x-2">
@@ -639,7 +639,7 @@ const ColorConverter = () => {
                 type="text"
                 value={colorInput}
                 onChange={(e) => setColorInput(e.target.value)}
-                className="flex-1 bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono"
+                className="flex-1 bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-800 dark:text-gray-200 focus:outline-none focus:border-primary-500 font-mono"
                 placeholder="#b799d4"
               />
             </div>
@@ -692,13 +692,13 @@ const LoremIpsumGenerator = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">Lorem Ipsum Generator</h2>
-        <p className="text-gray-400">Generate placeholder text</p>
+        <p className="text-gray-500 dark:text-gray-400">Generate placeholder text</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-primary-300 mb-2">
+            <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
               Number of Paragraphs
             </label>
             <input
@@ -707,7 +707,7 @@ const LoremIpsumGenerator = () => {
               max="20"
               value={paragraphs}
               onChange={(e) => setParagraphs(parseInt(e.target.value) || 1)}
-              className="w-full bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500"
+              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
             />
           </div>
           <button
@@ -759,10 +759,10 @@ const IPChecker = () => {
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-primary-400 mb-2">IP Address Checker</h2>
-        <p className="text-gray-400">Check your public IP address and location</p>
+        <p className="text-gray-500 dark:text-gray-400">Check your public IP address and location</p>
       </div>
 
-      <div className="bg-gray-900 border border-primary-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="space-y-4">
           <button
             onClick={checkIP}
@@ -780,7 +780,7 @@ const IPChecker = () => {
 
           {ipData && (
             <div className="space-y-3">
-              <div className="bg-gray-800 border border-gray-700 rounded p-4">
+              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <div className="text-sm text-gray-500">IP Address</div>
@@ -792,40 +792,40 @@ const IPChecker = () => {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">City</div>
-                    <div className="text-lg text-gray-200">{ipData.city || 'N/A'}</div>
+                    <div className="text-lg text-gray-800 dark:text-gray-200">{ipData.city || 'N/A'}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Region</div>
-                    <div className="text-lg text-gray-200">{ipData.region || 'N/A'}</div>
+                    <div className="text-lg text-gray-800 dark:text-gray-200">{ipData.region || 'N/A'}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Country</div>
-                    <div className="text-lg text-gray-200">{ipData.country_name || 'N/A'}</div>
+                    <div className="text-lg text-gray-800 dark:text-gray-200">{ipData.country_name || 'N/A'}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Timezone</div>
-                    <div className="text-lg text-gray-200">{ipData.timezone || 'N/A'}</div>
+                    <div className="text-lg text-gray-800 dark:text-gray-200">{ipData.timezone || 'N/A'}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">ISP</div>
-                    <div className="text-lg text-gray-200">{ipData.org || 'N/A'}</div>
+                    <div className="text-lg text-gray-800 dark:text-gray-200">{ipData.org || 'N/A'}</div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Latitude / Longitude</div>
-                    <div className="text-sm font-mono text-gray-200">
+                    <div className="text-sm font-mono text-gray-800 dark:text-gray-200">
                       {ipData.latitude}, {ipData.longitude}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gray-800 border border-gray-700 rounded p-4">
+              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-4">
                 <div className="text-sm text-gray-500 mb-2">Full JSON Response</div>
                 <textarea
                   value={JSON.stringify(ipData, null, 2)}
                   readOnly
                   rows={8}
-                  className="w-full bg-gray-900 border border-gray-700 rounded px-4 py-2 text-gray-200 focus:outline-none focus:border-primary-500 font-mono text-xs cursor-pointer"
+                  className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-xs cursor-pointer"
                   onClick={(e) => {
                     const target = e.target as HTMLTextAreaElement;
                     target.select();
@@ -889,9 +889,9 @@ const Utils = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${isDark ? 'bg-gray-950 text-gray-200' : 'bg-gray-50 text-gray-900'}`}>
+    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* Header */}
-      <header className={`${isDark ? 'bg-gray-900 border-primary-700' : 'bg-white border-gray-200'} border-b sticky top-0 z-20`}>
+      <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-20 shadow-sm">
         <div className="px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
@@ -911,7 +911,7 @@ const Utils = () => {
           </div>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200 transition-colors"
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             aria-label="Toggle light/dark mode"
           >
             {isDark ? (
@@ -933,7 +933,7 @@ const Utils = () => {
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-10 w-64 ${isDark ? 'bg-gray-900 border-primary-700' : 'bg-white border-gray-200'} border-r transition-transform duration-300 ease-in-out overflow-y-auto`}
+          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-10 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ease-in-out overflow-y-auto`}
           style={{ top: '73px' }}
         >
           <nav className="p-4 space-y-2">
@@ -949,7 +949,7 @@ const Utils = () => {
                 className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   selectedTool === tool.id
                     ? 'bg-primary-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-primary-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 <span className="text-xl">{tool.icon}</span>

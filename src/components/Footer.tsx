@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white py-12">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
             <div className="flex gap-4">
               <a 
                 href="https://github.com/amzar96"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-primary-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary-600 transition-all"
                 aria-label="GitHub"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               </a>
               <a 
                 href="https://www.linkedin.com/in/amzar96/"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-primary-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary-600 transition-all"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               </a>
               <a 
                 href="https://stackoverflow.com/users/9816541/amzar/"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-primary-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary-600 transition-all"
                 aria-label="Stack Overflow"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
               </a>
               <a 
                 href="https://www.behance.net/amzar96"
-                className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-300 hover:text-white hover:bg-primary-600 transition-all"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary-600 transition-all"
                 aria-label="Behance"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -67,11 +67,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
+        <div className="border-t border-slate-800 mt-8 pt-8 text-center">
+          <p className="text-slate-400">
             © 1996-{currentYear}
           </p>
-          <p className="text-gray-700">Built with Vibe Coding</p>
+          <p className="text-slate-700">Built with Vibe Coding</p>
         </div>
       </div>
     </footer>
