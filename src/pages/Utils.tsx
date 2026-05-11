@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
 
 // Shared Components
 interface InputOutputProps {
@@ -845,6 +846,7 @@ const IPChecker = () => {
 const Utils = () => {
   const [selectedTool, setSelectedTool] = useState<string>('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { isDark, toggleTheme } = useTheme();
 
   const tools = [
     { id: 'home', name: 'Home', icon: '🏠' },
@@ -887,9 +889,9 @@ const Utils = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-200 flex flex-col">
+    <div className={`min-h-screen flex flex-col ${isDark ? 'bg-gray-950 text-gray-200' : 'bg-gray-50 text-gray-900'}`}>
       {/* Header */}
-      <header className="bg-gray-900 border-b border-primary-700 sticky top-0 z-20">
+      <header className={`${isDark ? 'bg-gray-900 border-primary-700' : 'bg-white border-gray-200'} border-b sticky top-0 z-20`}>
         <div className="px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
@@ -907,6 +909,21 @@ const Utils = () => {
               <span>Back to Terminal</span>
             </Link>
           </div>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200 transition-colors"
+            aria-label="Toggle light/dark mode"
+          >
+            {isDark ? (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
+          </button>
         </div>
       </header>
 
@@ -916,7 +933,7 @@ const Utils = () => {
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-10 w-64 bg-gray-900 border-r border-primary-700 transition-transform duration-300 ease-in-out overflow-y-auto`}
+          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-10 w-64 ${isDark ? 'bg-gray-900 border-primary-700' : 'bg-white border-gray-200'} border-r transition-transform duration-300 ease-in-out overflow-y-auto`}
           style={{ top: '73px' }}
         >
           <nav className="p-4 space-y-2">

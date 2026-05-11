@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { ReactNode } from 'react';
+import { useTheme } from '../hooks/useTheme';
 
 interface TerminalLine {
   type: 'command' | 'output' | 'error';
@@ -82,13 +83,14 @@ const Terminal: React.FC = () => {
   const startYear = 2019;
   const workingYears = currentYear - startYear;
   const theme = themes[currentTheme];
+  const { isDark, toggleTheme } = useTheme();
 
   // Welcome message with typing animation
   useEffect(() => {
-    const welcomeMessages = [
-      '╔═══════════════════════════════════════════════════════════════╗',
-      '║                    Welcome to Amzar\'s Terminal                ║',
-      '╚═══════════════════════════════════════════════════════════════╝',
+    const welcomeMessages: Array<string | ReactNode> = [
+      <div key="box" className="whitespace-pre leading-none">
+        {'╔═══════════════════════════════════════════════════════════════╗\n║                    Welcome to Amzar\'s Terminal                ║\n╚═══════════════════════════════════════════════════════════════╝'}
+      </div>,
       '',
       'Senior Data Engineer | Kuala Lumpur, Malaysia',
       `Building data solutions with ${workingYears}+ years of experience`,
@@ -548,7 +550,24 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} font-mono pb-20 md:pb-24 transition-colors duration-300`}>
+    <div className={`min-h-screen ${isDark ? theme.bg : 'bg-gray-100'} ${theme.text} font-mono pb-20 md:pb-24 transition-colors duration-300`}>
+      <div className={`${isDark ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'} border-b px-6 py-3 flex justify-end items-center sticky top-0 z-10`}>
+        <button
+          onClick={toggleTheme}
+          className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200' : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'}`}
+          aria-label="Toggle light/dark mode"
+        >
+          {isDark ? (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          )}
+        </button>
+      </div>
       <div className="max-w-6xl mx-auto p-4 md:p-8">
         {/* Terminal Window */}
         <div className="bg-gray-900 rounded-lg shadow-2xl border-2 border-gray-800 overflow-hidden">
