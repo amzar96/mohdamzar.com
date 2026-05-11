@@ -146,6 +146,7 @@ const Terminal: React.FC = () => {
 
           <div className="text-gray-400 text-sm mt-3 mb-2">🛠️ Tools</div>
           <div><span className={theme.accent}>utils</span>     - Open developer utilities page</div>
+          <div><span className={theme.accent}>cv</span>        - View my CV / resume</div>
 
           <div className="text-gray-400 text-sm mt-3 mb-2">🎨 Customization</div>
           <div><span className={theme.accent}>theme</span>     - Change terminal theme</div>
@@ -399,6 +400,10 @@ const Terminal: React.FC = () => {
         setLines(prev => [...prev, { type: 'output', content: '🛠️ Opening developer utilities...' }]);
         setTimeout(() => navigate('/utils'), 500);
         break;
+      case 'cv':
+        setLines(prev => [...prev, { type: 'output', content: '📄 Opening CV...' }]);
+        setTimeout(() => navigate('/cv'), 500);
+        break;
       case 'theme':
         const themeList = Object.keys(themes).map((key, index) =>
           `${index + 1}. ${themes[key].name}${key === currentTheme ? ' (current)' : ''}`
@@ -534,7 +539,7 @@ const Terminal: React.FC = () => {
       }
     } else if (e.key === 'Tab') {
       e.preventDefault();
-      const commands = ['help', 'about', 'experience', 'skills', 'contact', 'social', 'projects', 'clear'];
+      const commands = ['help', 'about', 'experience', 'skills', 'contact', 'social', 'projects', 'utils', 'cv', 'clear'];
       const matches = commands.filter(cmd => cmd.startsWith(currentInput.toLowerCase()));
       if (matches.length === 1) {
         setCurrentInput(matches[0]);

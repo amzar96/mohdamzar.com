@@ -10,6 +10,10 @@ FROM base AS build-deps
 COPY package.json package-lock.json ./
 RUN npm ci
 
+FROM build-deps AS test
+COPY . .
+RUN npm run test:run
+
 FROM build-deps AS build
 COPY . .
 RUN npm run build
