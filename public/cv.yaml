@@ -21,9 +21,16 @@ summary: >
 
 skills:
   - category: Programming Languages
-    items: [Python, SQL, Bash, JavaScript]
+    items: [Python, SQL]
   - category: Data Engineering
-    items: [ETL/ELT Pipelines, Data Warehousing, Data Modeling, Data Quality, Data Governance]
+    items:
+      [
+        ETL/ELT Pipelines,
+        Data Warehousing,
+        Data Modeling,
+        Data Quality,
+        Data Governance,
+      ]
   - category: Python Frameworks
     items: [FastAPI, Django, Flask, PySpark, Pandas, SQLAlchemy]
   - category: Data Tools
@@ -31,7 +38,22 @@ skills:
   - category: Cloud Platforms
     items: [Amazon Web Services (AWS)]
   - category: AWS Services
-    items: [S3, Lambda, EC2, VPC, IAM, DMS, EMR, Athena, Glue, RDS, Kinesis, CodeBuild, CodePipeline]
+    items:
+      [
+        S3,
+        Lambda,
+        EC2,
+        VPC,
+        IAM,
+        DMS,
+        EMR,
+        Athena,
+        Glue,
+        RDS,
+        Kinesis,
+        CodeBuild,
+        CodePipeline,
+      ]
   - category: Infrastructure as Code
     items: [Terraform, AWS CDK, AWS CloudFormation, Ansible]
   - category: Containerization
@@ -55,7 +77,25 @@ experience:
       - Enhanced GitHub Actions workflows to validate dbt syntax ensuring error-free execution during Apache Airflow tasks
       - Provisioned data warehouse infrastructure and integrated SaaS applications using Terraform
       - Developed comprehensive data monitoring and observability solutions using Python and Apache Airflow
-    technologies: [Python, SQL, Bash, AWS S3, AWS Lambda, AWS DMS, AWS IAM, Kubernetes, Terraform, Git, GitHub Actions, dbt, Apache Airflow, PySpark, Docker]
+    technologies:
+      [
+        Python,
+        SQL,
+        Bash,
+        AWS Glue,
+        AWS S3,
+        AWS Lambda,
+        AWS DMS,
+        AWS IAM,
+        Kubernetes,
+        Terraform,
+        Git,
+        GitHub Actions,
+        dbt,
+        Apache Airflow,
+        PySpark,
+        Docker,
+      ]
 
   - title: Platform Engineer
     company: Be U by Bank Islam
@@ -66,7 +106,22 @@ experience:
       - Implemented Infrastructure as Code practices with AWS CDK for scalable cloud deployments
       - Provisioned AWS services for development teams using CloudFormation, Ansible, and Terraform
       - Implemented GitOps strategy to enhance CI/CD pipeline efficiency and consistency for development teams
-    technologies: [AWS S3, AWS Lambda, AWS IAM, AWS CodeBuild, AWS CodePipeline, AWS CDK, AWS CloudFormation, AWS EMR, Git, Apache Airflow, Docker, GitLab, SonarQube]
+    technologies:
+      [
+        AWS S3,
+        AWS Lambda,
+        AWS IAM,
+        AWS CodeBuild,
+        AWS CodePipeline,
+        AWS CDK,
+        AWS CloudFormation,
+        AWS EMR,
+        Git,
+        Apache Airflow,
+        Docker,
+        GitLab,
+        SonarQube,
+      ]
 
   - title: Analytics Engineer
     company: Be U by Bank Islam
@@ -77,7 +132,24 @@ experience:
       - Developed automated data pipelines for regulatory reporting using Python, AWS ECR, and Apache Airflow
       - Pioneered metadata management as first team member to research and develop data catalog using DataHub
       - Collaborated with DevOps team to improve batch and streaming data processing solutions
-    technologies: [Python, SQL, Bash, AWS S3, AWS Lambda, AWS DMS, AWS IAM, AWS CodeBuild, AWS CodePipeline, AWS EMR, Kubernetes, Git, dbt, Apache Airflow, Docker]
+    technologies:
+      [
+        Python,
+        SQL,
+        Bash,
+        AWS S3,
+        AWS Lambda,
+        AWS DMS,
+        AWS IAM,
+        AWS CodeBuild,
+        AWS CodePipeline,
+        AWS EMR,
+        Kubernetes,
+        Git,
+        dbt,
+        Apache Airflow,
+        Docker,
+      ]
 
   - title: Performance and System Analyst
     company: DHL eCommerce
@@ -89,7 +161,20 @@ experience:
       - Developed automation solutions reducing manual work by 60% using Google Apps and Python scripts
       - Led data migration project from FarEye to Apollo system including data extraction, cleaning, and validation
       - "Recognition: Employee of the Year 2021"
-    technologies: [Python, SQL, Bash, Splunk, Looker, Tableau, Power BI, Google Apps, PostgreSQL, Selenium, UiPath]
+    technologies:
+      [
+        Python,
+        SQL,
+        Bash,
+        Splunk,
+        Looker,
+        Tableau,
+        Power BI,
+        Google Apps,
+        PostgreSQL,
+        Selenium,
+        UiPath,
+      ]
 
   - title: Software Engineer (Part-time)
     company: Mesolitica
@@ -99,7 +184,16 @@ experience:
       - Implemented distributed crawler processing on Google Cloud Platform for large-scale data collection
       - Developed real-time stream processing solutions using Apache Kafka ecosystem
       - Managed containerized applications in Kubernetes environment
-    technologies: [Python, Elasticsearch, Kibana, Selenium, Apache Kafka, Docker, Google Cloud Platform]
+    technologies:
+      [
+        Python,
+        Elasticsearch,
+        Kibana,
+        Selenium,
+        Apache Kafka,
+        Docker,
+        Google Cloud Platform,
+      ]
 
   - title: Backend Engineer
     company: Asiana Tech Sdn. Bhd.
@@ -109,7 +203,18 @@ experience:
       - Implemented RESTful Web APIs using Flask, Falcon, and Django frameworks
       - Deployed web applications and APIs to production Ubuntu servers with zero downtime
       - Managed database migrations to production using Alembic, SQLAlchemy, and Django ORM
-    technologies: [Python, SQL, Bash, Flask, Django, Falcon, Elasticsearch, Docker, SQLAlchemy]
+    technologies:
+      [
+        Python,
+        SQL,
+        Bash,
+        Flask,
+        Django,
+        Falcon,
+        Elasticsearch,
+        Docker,
+        SQLAlchemy,
+      ]
 
 education:
   - degree: Bachelor of Information Technology (Honours) - Intelligent System Engineering
@@ -137,6 +242,3 @@ certifications:
 
 achievements:
   - Employee of the Year 2021 at DHL eCommerce for outstanding performance in data analytics and automation
-  - Successfully implemented zero data loss ingestion processes using mini-batch techniques
-  - Pioneered data catalog implementation using open-source DataHub solution
-  - Led critical system migration project ensuring data integrity and business continuity
