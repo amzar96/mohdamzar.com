@@ -50,12 +50,12 @@ jobs:
     - name: Update image tag
       run: |
         sed -i "s|image: ghcr.io/amzar96/mohdamzar-website:.*|image: ghcr.io/amzar96/mohdamzar-website:${{ needs.build-and-push.outputs.image_tag }}|" \
-          clusters/homelab/website/deployment.yaml
+          apps/website/base/deployment.yaml
 
     - name: Commit and push
       run: |
         git config user.name "github-actions"
         git config user.email "github-actions@github.com"
-        git add clusters/homelab/website/deployment.yaml
+        git add apps/website/base/deployment.yaml
         git commit -m "chore: update mohdamzar-website to ${{ needs.build-and-push.outputs.image_tag }}"
         git push

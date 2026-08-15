@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React from 'react';
 
 export const EmailIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (

@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../hooks/useTheme';
 
 // Shared Components
 interface InputOutputProps {
@@ -33,7 +31,7 @@ const InputOutput = ({
           onChange={(e) => onInputChange(e.target.value)}
           placeholder={inputPlaceholder}
           rows={rows}
-          className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
+          className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
         />
       </div>
     )}
@@ -43,7 +41,7 @@ const InputOutput = ({
         value={output}
         readOnly={readOnly}
         rows={rows}
-        className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm cursor-pointer"
+        className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm cursor-pointer"
         onClick={(e) => {
           const target = e.target as HTMLTextAreaElement;
           target.select();
@@ -68,26 +66,26 @@ const Home = () => {
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="text-center max-w-2xl px-8">
         <div className="mb-8">
-          <h1 className="text-5xl font-bold gradient-text mb-4">Developer Utilities</h1>
+          <h1 className="font-display text-5xl font-bold text-primary-700 dark:text-primary-400 mb-4">Developer Utilities</h1>
           <p className="text-xl text-gray-500 dark:text-gray-400">
             A collection of handy tools to make your development workflow easier
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
             <div className="text-3xl mb-2">🆔</div>
             <div className="text-sm text-gray-700 dark:text-gray-300">UUID Generator</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
             <div className="text-3xl mb-2">📝</div>
             <div className="text-sm text-gray-700 dark:text-gray-300">JSON Tools</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
             <div className="text-3xl mb-2">🔐</div>
             <div className="text-sm text-gray-700 dark:text-gray-300">Encoders</div>
           </div>
-          <div className="bg-white dark:bg-gray-800 border border-primary-200 dark:border-primary-700 rounded-lg p-4">
+          <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
             <div className="text-3xl mb-2">🌐</div>
             <div className="text-sm text-gray-700 dark:text-gray-300">IP Checker</div>
           </div>
@@ -133,7 +131,7 @@ const UUIDGenerator = () => {
         <p className="text-gray-500 dark:text-gray-400">Generate universally unique identifiers (UUID v4 or v7)</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -159,7 +157,7 @@ const UUIDGenerator = () => {
           </div>
           <button
             onClick={generateUUID}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             Generate UUID
           </button>
@@ -194,7 +192,10 @@ const JSONGenerator = () => {
   const [generatedJson, setGeneratedJson] = useState('');
   const [jsonCount, setJsonCount] = useState(1);
 
-  const generateRandomValue = (type: string): any => {
+  type JsonValue = string | number | boolean | null;
+type JsonSchema = JsonValue | JsonSchema[] | { [key: string]: JsonSchema };
+
+const generateRandomValue = (type: string): JsonValue => {
     switch (type) {
       case 'string':
         return `sample_${Math.random().toString(36).substring(7)}`;
@@ -217,7 +218,7 @@ const JSONGenerator = () => {
     }
   };
 
-  const generateJsonFromSchema = (schema: any): any => {
+  const generateJsonFromSchema = (schema: JsonSchema): JsonSchema => {
     if (Array.isArray(schema)) {
       return schema.map(item => {
         if (typeof item === 'string') {
@@ -228,7 +229,7 @@ const JSONGenerator = () => {
     }
 
     if (typeof schema === 'object' && schema !== null) {
-      const result: any = {};
+      const result: { [key: string]: JsonSchema } = {};
       for (const [key, value] of Object.entries(schema)) {
         if (typeof value === 'string') {
           result[key] = generateRandomValue(value);
@@ -244,8 +245,8 @@ const JSONGenerator = () => {
 
   const generateRandomJson = () => {
     try {
-      const schema = JSON.parse(jsonSchema);
-      const results = [];
+      const schema = JSON.parse(jsonSchema) as JsonSchema;
+      const results: JsonSchema[] = [];
       for (let i = 0; i < jsonCount; i++) {
         results.push(generateJsonFromSchema(schema));
       }
@@ -263,7 +264,7 @@ const JSONGenerator = () => {
         <p className="text-gray-500 dark:text-gray-400">Generate random JSON data based on a schema</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
@@ -276,7 +277,7 @@ const JSONGenerator = () => {
               value={jsonSchema}
               onChange={(e) => setJsonSchema(e.target.value)}
               rows={10}
-              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
+              className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-sm"
             />
           </div>
           <div>
@@ -289,12 +290,12 @@ const JSONGenerator = () => {
               max="100"
               value={jsonCount}
               onChange={(e) => setJsonCount(parseInt(e.target.value) || 1)}
-              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
+              className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
             />
           </div>
           <button
             onClick={generateRandomJson}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             Generate JSON
           </button>
@@ -337,7 +338,7 @@ const Base64Tool = () => {
         <p className="text-gray-500 dark:text-gray-400">Encode or decode Base64 strings</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -370,7 +371,7 @@ const Base64Tool = () => {
           />
           <button
             onClick={handleBase64}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             {base64Mode === 'encode' ? 'Encode' : 'Decode'}
           </button>
@@ -405,7 +406,7 @@ const URLTool = () => {
         <p className="text-gray-500 dark:text-gray-400">Encode or decode URL components</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div className="flex items-center space-x-4">
             <label className="flex items-center space-x-2">
@@ -438,7 +439,7 @@ const URLTool = () => {
           />
           <button
             onClick={handleUrl}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             {urlMode === 'encode' ? 'Encode' : 'Decode'}
           </button>
@@ -479,7 +480,7 @@ const HashGenerator = () => {
         <p className="text-gray-500 dark:text-gray-400">Generate SHA-256 hash from text</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <InputOutput
             input={hashInput}
@@ -491,7 +492,7 @@ const HashGenerator = () => {
           />
           <button
             onClick={generateHash}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             Generate Hash
           </button>
@@ -511,7 +512,7 @@ const TimestampConverter = () => {
       const ts = parseInt(timestamp);
       const date = new Date(ts);
       setTimestampDate(date.toISOString() + '\n' + date.toLocaleString());
-    } catch (error) {
+    } catch {
       setTimestampDate(`Error: Invalid timestamp`);
     }
   };
@@ -527,7 +528,7 @@ const TimestampConverter = () => {
         <p className="text-gray-500 dark:text-gray-400">Convert Unix timestamp to readable date</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
@@ -537,19 +538,19 @@ const TimestampConverter = () => {
               type="text"
               value={timestamp}
               onChange={(e) => setTimestamp(e.target.value)}
-              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono"
+              className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono"
             />
           </div>
           <div className="flex space-x-2">
             <button
               onClick={convertTimestamp}
-              className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+              className="flex-1 bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
             >
               Convert
             </button>
             <button
               onClick={getCurrentTimestamp}
-              className="flex-1 bg-secondary-600 hover:bg-secondary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+              className="flex-1 bg-secondary-700 hover:bg-secondary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
             >
               Current Time
             </button>
@@ -588,7 +589,9 @@ const ColorConverter = () => {
 
       const max = Math.max(rNorm, gNorm, bNorm);
       const min = Math.min(rNorm, gNorm, bNorm);
-      let h = 0, s = 0, l = (max + min) / 2;
+      let h = 0;
+      let s = 0;
+      const l = (max + min) / 2;
 
       if (max !== min) {
         const d = max - min;
@@ -610,7 +613,7 @@ const ColorConverter = () => {
       const hsl = `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
 
       setColorOutput(`HEX: ${colorInput}\nRGB: ${rgb}\nHSL: ${hsl}`);
-    } catch (error) {
+    } catch {
       setColorOutput(`Error: Invalid color format`);
     }
   };
@@ -622,7 +625,7 @@ const ColorConverter = () => {
         <p className="text-gray-500 dark:text-gray-400">Convert HEX color to RGB and HSL</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
@@ -633,20 +636,20 @@ const ColorConverter = () => {
                 type="color"
                 value={colorInput}
                 onChange={(e) => setColorInput(e.target.value)}
-                className="h-12 w-16 bg-gray-800 border border-gray-700 rounded cursor-pointer"
+                className="h-12 w-16 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-sm cursor-pointer"
               />
               <input
                 type="text"
                 value={colorInput}
                 onChange={(e) => setColorInput(e.target.value)}
-                className="flex-1 bg-gray-800 border border-gray-700 rounded px-4 py-2 text-gray-800 dark:text-gray-200 focus:outline-none focus:border-primary-500 font-mono"
+                className="flex-1 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-sm px-4 py-2 text-stone-900 dark:text-stone-200 focus:outline-none focus:border-primary-500 font-mono"
                 placeholder="#b799d4"
               />
             </div>
           </div>
           <button
             onClick={convertColor}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             Convert
           </button>
@@ -695,7 +698,7 @@ const LoremIpsumGenerator = () => {
         <p className="text-gray-500 dark:text-gray-400">Generate placeholder text</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-primary-600 dark:text-primary-300 mb-2">
@@ -707,12 +710,12 @@ const LoremIpsumGenerator = () => {
               max="20"
               value={paragraphs}
               onChange={(e) => setParagraphs(parseInt(e.target.value) || 1)}
-              className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
+              className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500"
             />
           </div>
           <button
             onClick={generateLorem}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors"
           >
             Generate Lorem Ipsum
           </button>
@@ -730,9 +733,22 @@ const LoremIpsumGenerator = () => {
   );
 };
 
+interface IPData {
+  ip: string;
+  version: string;
+  city: string;
+  region: string;
+  country_name: string;
+  timezone: string;
+  org: string;
+  latitude: number;
+  longitude: number;
+  [key: string]: unknown;
+}
+
 // IP Address Checker
 const IPChecker = () => {
-  const [ipData, setIpData] = useState<any>(null);
+  const [ipData, setIpData] = useState<IPData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -748,7 +764,7 @@ const IPChecker = () => {
       const detailData = await detailResponse.json();
 
       setIpData(detailData);
-    } catch (err) {
+    } catch {
       setError('Failed to fetch IP information');
     } finally {
       setLoading(false);
@@ -762,12 +778,12 @@ const IPChecker = () => {
         <p className="text-gray-500 dark:text-gray-400">Check your public IP address and location</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+      <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-6">
         <div className="space-y-4">
           <button
             onClick={checkIP}
             disabled={loading}
-            className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-4 rounded transition-colors disabled:opacity-50"
+            className="w-full bg-primary-700 hover:bg-primary-800 text-white font-medium py-3 px-4 rounded-sm transition-colors disabled:opacity-50"
           >
             {loading ? 'Checking...' : 'Check My IP'}
           </button>
@@ -780,7 +796,7 @@ const IPChecker = () => {
 
           {ipData && (
             <div className="space-y-3">
-              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-4">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <div className="text-sm text-gray-500">IP Address</div>
@@ -819,13 +835,13 @@ const IPChecker = () => {
                 </div>
               </div>
 
-              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-4">
+              <div className="bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm p-4">
                 <div className="text-sm text-gray-500 mb-2">Full JSON Response</div>
                 <textarea
                   value={JSON.stringify(ipData, null, 2)}
                   readOnly
                   rows={8}
-                  className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-xs cursor-pointer"
+                  className="w-full bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm px-4 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:border-primary-500 font-mono text-xs cursor-pointer"
                   onClick={(e) => {
                     const target = e.target as HTMLTextAreaElement;
                     target.select();
@@ -846,7 +862,6 @@ const IPChecker = () => {
 const Utils = () => {
   const [selectedTool, setSelectedTool] = useState<string>('home');
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { isDark, toggleTheme } = useTheme();
 
   const tools = [
     { id: 'home', name: 'Home', icon: '🏠' },
@@ -889,54 +904,15 @@ const Utils = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-20 shadow-sm">
-        <div className="px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden text-primary-400 hover:text-primary-300"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            <Link to="/" className="text-primary-400 hover:text-primary-300 transition-colors flex items-center space-x-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <span>Back to Terminal</span>
-            </Link>
-          </div>
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle light/dark mode"
-          >
-            {isDark ? (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </header>
-
-      {/* Main Layout */}
-      <div className="flex flex-1 overflow-hidden">
+    <div className="pt-14">
+      <div className="flex min-h-[calc(100vh-8rem)]">
         {/* Sidebar */}
         <aside
           className={`${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-10 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-transform duration-300 ease-in-out overflow-y-auto`}
-          style={{ top: '73px' }}
+          } lg:translate-x-0 fixed lg:sticky top-14 inset-y-0 left-0 z-30 w-64 bg-stone-50 dark:bg-stone-950 border-r border-stone-200 dark:border-stone-800 transition-transform duration-300 ease-in-out overflow-y-auto lg:h-[calc(100vh-3.5rem)]`}
         >
-          <nav className="p-4 space-y-2">
+          <nav className="p-4 space-y-1">
             {tools.map((tool) => (
               <button
                 key={tool.id}
@@ -946,31 +922,42 @@ const Utils = () => {
                     setSidebarOpen(false);
                   }
                 }}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
+                className={`w-full flex items-center space-x-3 px-4 py-2.5 rounded-sm transition-colors text-left ${
                   selectedTool === tool.id
-                    ? 'bg-primary-600 text-white'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? 'bg-primary-700 text-white'
+                    : 'text-stone-600 dark:text-stone-400 hover:bg-stone-200/60 dark:hover:bg-stone-900 hover:text-stone-900 dark:hover:text-stone-100'
                 }`}
               >
-                <span className="text-xl">{tool.icon}</span>
-                <span className="font-medium">{tool.name}</span>
+                <span className="text-lg">{tool.icon}</span>
+                <span className="font-medium text-sm">{tool.name}</span>
               </button>
             ))}
           </nav>
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <main className="flex-1 min-w-0">
+          <div className="max-w-4xl mx-auto px-6 py-10">
             {renderTool()}
           </div>
         </main>
       </div>
 
+      {/* Mobile sidebar toggle */}
+      <button
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        className="lg:hidden fixed top-16 right-4 z-40 p-2 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-sm text-stone-600 dark:text-stone-400"
+        aria-label="Toggle sidebar"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-0"
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-40 z-20"
           onClick={() => setSidebarOpen(false)}
         />
       )}
