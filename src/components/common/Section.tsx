@@ -4,45 +4,40 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 interface SectionProps {
   id?: string;
+  eyebrow?: string;
   title: string;
   subtitle?: string;
   children: ReactNode;
   className?: string;
-  background?: 'default' | 'alternate';
 }
 
-const Section: React.FC<SectionProps> = ({ 
-  id, 
-  title, 
-  subtitle, 
-  children, 
-  className = '', 
-  background = 'default' 
+export const Section: React.FC<SectionProps> = ({
+  id,
+  eyebrow,
+  title,
+  subtitle,
+  children,
+  className = '',
 }) => {
   const { ref, isVisible } = useScrollAnimation();
-  
-  const bgClass = background === 'alternate' 
-    ? 'bg-gray-50 dark:bg-gray-800/50' 
-    : 'bg-white dark:bg-gray-900';
 
   return (
-    <section 
+    <section
       id={id}
       ref={ref}
-      className={`py-20 ${bgClass} ${className}`}
+      className={`py-20 md:py-28 border-t border-stone-200 dark:border-stone-800 ${className}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              {title}
-            </h2>
-            {subtitle && (
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                {subtitle}
-              </p>
-            )}
-          </div>
+      <div className="max-w-4xl mx-auto px-6">
+        <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+          {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+          <h2 className="font-display text-3xl md:text-4xl text-stone-900 dark:text-stone-100 mb-4">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-lg text-stone-600 dark:text-stone-400 mb-12 max-w-2xl">
+              {subtitle}
+            </p>
+          )}
           {children}
         </div>
       </div>
@@ -50,5 +45,4 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
-export { Section };
 export default Section;

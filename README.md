@@ -1,6 +1,6 @@
 # mohdamzar.com - Personal Website
 
-A modern, modular personal website built with React, TypeScript, and Vite. Features a terminal-based interface, config-driven content management, and Docker support.
+A modern, modular personal website built with React, TypeScript, and Vite. Features a config-driven content model, Docker support, and a print-ready CV.
 
 ## Features
 
@@ -8,9 +8,9 @@ A modern, modular personal website built with React, TypeScript, and Vite. Featu
 - **Modular Architecture**: Clean, maintainable folder structure
 - **Docker Support**: Production-ready containerization with optimized caching
 - **Comprehensive Testing**: Test suite with Vitest
-- **Terminal Interface**: Interactive command-line themed homepage
+- **Print-Ready CV**: /cv page optimized for PDF export
 - **Developer Utilities**: Built-in tools for developers
-- **Dark Mode**: Full dark mode support with multiple themes
+- **Dark Mode**: Full dark mode support
 - **Responsive Design**: Mobile-first approach
 
 ## Quick Start
@@ -129,12 +129,11 @@ src/
 │   │   ├── ExperienceSection.tsx
 │   │   ├── ProjectsSection.tsx
 │   │   └── ContactSection.tsx
-│   ├── Terminal.tsx  # Terminal interface
-│   ├── Header.tsx
-│   └── Footer.tsx
+│   └── Layout.tsx    # Shared header/footer shell
 ├── pages/            # Page components
 │   ├── Home.tsx      # Config-driven home page
-│   └── Utils.tsx     # Developer utilities
+│   ├── Utils.tsx     # Developer utilities
+│   └── CV.tsx        # Print-ready CV
 └── App.tsx           # Main app with routing
 
 tests/
@@ -153,9 +152,9 @@ vitest.config.ts     # Test configuration
 
 ## Routes
 
-- `/` - Terminal interface (interactive CLI theme)
-- `/home` - Traditional home page (config-driven)
+- `/` - Home page (config-driven)
 - `/utils` - Developer utilities
+- `/cv` - Print-ready CV
 
 ## Testing
 

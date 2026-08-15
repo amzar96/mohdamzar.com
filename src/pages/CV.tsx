@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCV } from '../hooks/useCV';
-import { useTheme } from '../hooks/useTheme';
+import { useConfig } from '../hooks/useConfig';
 import { Loading } from '../components/common/Loading';
 import { getYearsOfExperience, interpolateDescription } from '../config/loader';
-import type { CVExperience, CVEducation, CVCertification, CVSkillCategory } from '../types/cv';
+import type { CVExperience, CVEducation, CVCertification, CVSkillCategory } from '../types/config';
 
 const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="mb-3">
@@ -64,11 +62,10 @@ const SkillRow: React.FC<{ skill: CVSkillCategory }> = ({ skill }) => (
 );
 
 export const CV: React.FC = () => {
-  const { cv, loading, error } = useCV();
-  const { isDark, toggleTheme } = useTheme();
+  const { config, loading, error } = useConfig();
 
   if (loading) return <Loading />;
-  if (error || !cv) {
+  if (error || !config) {
     return (
       <div className="min-h-screen flex items-center justify-center dark:bg-gray-900">
         <p className="text-red-600">Error loading CV data.</p>
@@ -76,6 +73,7 @@ export const CV: React.FC = () => {
     );
   }
 
+  const cv = config.cv;
   const { personal, skills, experience, education, certifications, achievements } = cv;
   const years = getYearsOfExperience(cv.start_year);
   const summary = interpolateDescription(cv.summary, years);
@@ -102,39 +100,19 @@ export const CV: React.FC = () => {
         }
       `}</style>
 
-      <div className="no-print bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-3 flex justify-between items-center sticky top-0 z-10 shadow-sm">
-        <Link to="/" className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-          ← Back
-        </Link>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
-          <button
-            onClick={() => window.print()}
-            className="bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-medium px-4 py-2 rounded hover:bg-gray-700 dark:hover:bg-gray-300 transition-colors"
-          >
-            Download PDF
-          </button>
-        </div>
+      <div className="no-print flex justify-end max-w-3xl mx-auto px-6 pt-20 pb-4">
+        <button
+          onClick={() => window.print()}
+          className="btn-ghost text-sm px-4 py-2"
+        >
+          Download PDF
+        </button>
       </div>
 
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-8 print:bg-white print:py-0">
+      <div className="min-h-screen bg-stone-100 dark:bg-stone-900 pb-16 print:bg-white print:pb-0">
         <div
           id="cv-sheet"
-          className="max-w-3xl mx-auto bg-white dark:bg-gray-800 shadow-md px-10 py-10 print:shadow-none print:bg-white"
+          className="max-w-3xl mx-auto bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 px-10 py-10 print:shadow-none print:bg-white print:border-0"
         >
           <div className="text-center border-b-2 border-gray-900 dark:border-gray-300 pb-4 mb-6 print:border-black">
             <h1 className="text-2xl font-bold uppercase tracking-wide text-gray-900 dark:text-gray-100 print:text-black">

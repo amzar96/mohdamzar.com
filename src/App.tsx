@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useConfig } from './hooks/useConfig';
 import { Loading } from './components/common/Loading';
-import Terminal from './components/Terminal';
+import Layout from './components/Layout';
 import { Home } from './pages/Home';
 import Utils from './pages/Utils';
 import { CV } from './pages/CV';
@@ -26,12 +26,13 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Terminal />} />
-        <Route path="/home" element={<Home config={config} />} />
-        <Route path="/utils" element={<Utils />} />
-        <Route path="/cv" element={<CV />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home config={config} />} />
+          <Route path="/utils" element={<Utils />} />
+          <Route path="/cv" element={<CV />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 };
