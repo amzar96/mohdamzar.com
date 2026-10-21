@@ -15,11 +15,16 @@ const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
 const ExperienceItem: React.FC<{ exp: CVExperience }> = ({ exp }) => (
   <div className="mb-5">
-    <div className="flex justify-between items-baseline">
-      <span className="font-bold text-sm text-gray-900 dark:text-gray-100 print:text-black">{exp.title}</span>
-      <span className="text-xs text-gray-600 dark:text-gray-400 shrink-0 ml-2 print:text-black">{exp.period}</span>
+    <div className="break-after-avoid break-inside-avoid">
+      <div className="flex justify-between items-baseline">
+        <span className="font-bold text-sm text-gray-900 dark:text-gray-100 print:text-black">{exp.title}</span>
+        <span className="text-xs text-gray-600 dark:text-gray-400 shrink-0 ml-2 print:text-black">{exp.period}</span>
+      </div>
+      <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 print:text-black">{exp.company}</div>
+      {exp.note && (
+        <div className="text-xs italic text-gray-600 dark:text-gray-400 print:text-black">{exp.note}</div>
+      )}
     </div>
-    <div className="text-sm font-semibold text-gray-800 dark:text-gray-200 print:text-black">{exp.company}</div>
     <ul className="mt-1 list-disc list-outside ml-4 space-y-0.5">
       {exp.bullets.map((b, i) => (
         <li key={i} className="text-xs text-gray-700 dark:text-gray-300 print:text-black">{b}</li>
@@ -74,35 +79,58 @@ export const CV: React.FC = () => {
   }
 
   const cv = config.cv;
-  const { personal, skills, experience, education, certifications, achievements } = cv;
+  const { personal, skills, experience, education, certifications } = cv;
   const years = getYearsOfExperience(cv.start_year);
   const summary = interpolateDescription(cv.summary, years);
+
+  const handlePrint = () => {
+    const previousTitle = document.title;
+    document.title = 'Mohamad_Amzar_Senior_Data_Engineer_CV';
+    window.addEventListener(
+      'afterprint',
+      () => {
+        document.title = previousTitle;
+      },
+      { once: true }
+    );
+    window.print();
+  };
 
   return (
     <>
       <style>{`
         @media print {
-          @page { margin: 0.45in; size: A4; }
+          @page { margin: 0.5in; size: A4; }
           .no-print { display: none !important; }
-          body { background: white !important; }
+          html, body { margin: 0 !important; padding: 0 !important; background: white !important; }
+          body, #root, main {
+            width: 7.25in !important;
+            max-width: 7.25in !important;
+          }
           #cv-sheet {
             box-shadow: none !important;
             margin: 0 !important;
             padding: 0 !important;
             max-width: 100% !important;
+            width: 100% !important;
             background: white !important;
             color: #000 !important;
             font-family: Arial, Helvetica, sans-serif !important;
             font-size: 10.5pt !important;
-            line-height: 1.4 !important;
+            line-height: 1.35 !important;
           }
           #cv-sheet * { color: #000 !important; background: transparent !important; }
+          #cv-sheet .text-xs { font-size: 10pt !important; }
+          #cv-sheet .text-sm { font-size: 11pt !important; }
+          #cv-sheet a { text-decoration: none !important; }
+          #cv-sheet h2 { break-after: avoid; letter-spacing: normal !important; }
+          #cv-sheet li { break-inside: avoid; }
         }
       `}</style>
 
       <div className="no-print flex justify-end max-w-3xl mx-auto px-6 pt-20 pb-4">
         <button
-          onClick={() => window.print()}
+          onClick={handlePrint}
           className="btn-ghost text-sm px-4 py-2"
         >
           Download PDF
@@ -121,23 +149,23 @@ export const CV: React.FC = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 print:text-black">{personal.title}</p>
             <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 print:text-black">
               <a href={`mailto:${personal.email}`} className="hover:underline">{personal.email}</a>
-              {' · '}
+              {' | '}
               <a href={`tel:${personal.phone}`} className="hover:underline">{personal.phone}</a>
-              {' · '}
+              {' | '}
               {personal.location}
             </p>
             <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5 print:text-black">
               <a href={personal.linkedin_url} className="hover:underline">{personal.linkedin}</a>
-              {' · '}
+              {' | '}
               <a href={personal.github_url} className="hover:underline">{personal.github}</a>
-              {' · '}
+              {' | '}
               <a href={personal.website_url} className="hover:underline">{personal.website}</a>
             </p>
           </div>
 
           <div className="mb-5">
             <SectionTitle>Professional Summary</SectionTitle>
-            <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed text-justify print:text-black">
+            <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed text-left print:text-black">
               {summary}
             </p>
           </div>
@@ -162,15 +190,6 @@ export const CV: React.FC = () => {
           <div className="mb-5">
             <SectionTitle>Certifications</SectionTitle>
             {certifications.map((cert, i) => <CertItem key={i} cert={cert} />)}
-          </div>
-
-          <div>
-            <SectionTitle>Key Achievements</SectionTitle>
-            <ul className="list-disc list-outside ml-4 space-y-0.5">
-              {achievements.map((a, i) => (
-                <li key={i} className="text-xs text-gray-700 dark:text-gray-300 print:text-black">{a}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

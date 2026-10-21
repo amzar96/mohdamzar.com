@@ -82,6 +82,7 @@ export interface CVExperience {
   company: string;
   location: string;
   period: string;
+  note?: string;
   bullets: string[];
   technologies: string[];
 }
@@ -107,5 +108,4 @@ export interface CV {
   experience: CVExperience[];
   education: CVEducation[];
   certifications: CVCertification[];
-  achievements: string[];
 }
