@@ -180,8 +180,8 @@ cv:
     - title: Senior Data Engineer II
       company: AEON Bank
       location: Kuala Lumpur, Malaysia
-      period: Sep 2024 – Present
-      note: Promoted from Senior Data Engineer, Sep 2026
+      period: Sep 2026 – Present
+      note: Tenure Sep 2024 – Present; promoted from Senior Data Engineer
       bullets:
         - Lead a team of 2–3 data engineers and own 50+ production pipelines processing 2–3 million records/day
         - Redesigned batch ingestion to a mini-batch model, eliminating data loss and reducing data latency
@@ -246,12 +246,12 @@ cv:
       company: DHL eCommerce Solutions
       location: Puchong, Malaysia
       period: Sep 2020 – Jul 2022
-      note: Employee of the Year 2021
       bullets:
+        - Awarded Employee of the Year 2021 for outstanding performance in data analytics and automation
         - Extracted and analyzed data from multiple source systems in PostgreSQL, producing recurring reports for operations and commercial teams
         - Consolidated reports into executive dashboards with Tableau, Power BI, Looker, and Splunk, giving leadership a single KPI view
         - Automated manual workflows with Python and Google Apps Script, cutting manual effort by 60%
-        - Led the FarEye → Apollo migration, including data extraction, cleansing, and validation
+        - Led the FarEye to Apollo migration, including data extraction, cleansing, and validation
       technologies:
         - Python
         - SQL

@@ -44,7 +44,7 @@ const EducationItem: React.FC<{ edu: CVEducation }> = ({ edu }) => (
       <span className="text-xs text-gray-600 dark:text-gray-400 shrink-0 ml-2 print:text-black">{edu.period}</span>
     </div>
     <div className="text-sm text-gray-700 dark:text-gray-300 print:text-black">
-      {edu.institution} · {edu.location}
+      {edu.institution} | {edu.location}
     </div>
   </div>
 );
@@ -53,7 +53,7 @@ const CertItem: React.FC<{ cert: CVCertification }> = ({ cert }) => (
   <div className="mb-1.5 flex justify-between items-baseline">
     <span className="text-sm text-gray-900 dark:text-gray-100 print:text-black">
       <span className="font-semibold">{cert.name}</span>
-      <span className="text-gray-600 dark:text-gray-400 print:text-black"> · {cert.issuer}</span>
+      <span className="text-gray-600 dark:text-gray-400 print:text-black"> | {cert.issuer}</span>
     </span>
     <span className="text-xs text-gray-500 dark:text-gray-400 shrink-0 ml-2 print:text-black">{cert.date}</span>
   </div>
@@ -104,6 +104,7 @@ export const CV: React.FC = () => {
           .no-print { display: none !important; }
           html, body { margin: 0 !important; padding: 0 !important; background: white !important; }
           body, #root, main {
+            /* A4 width 8.27in minus 2 x 0.5in margins = 7.27in; 7.25in leaves a small buffer. */
             width: 7.25in !important;
             max-width: 7.25in !important;
           }
@@ -150,7 +151,7 @@ export const CV: React.FC = () => {
             <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 print:text-black">
               <a href={`mailto:${personal.email}`} className="hover:underline">{personal.email}</a>
               {' | '}
-              <a href={`tel:${personal.phone}`} className="hover:underline">{personal.phone}</a>
+              <a href={`tel:${personal.phone.replace(/[^\d+]/g, '')}`} className="hover:underline">{personal.phone}</a>
               {' | '}
               {personal.location}
             </p>
