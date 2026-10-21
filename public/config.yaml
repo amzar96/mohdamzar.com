@@ -14,8 +14,8 @@ profile:
     with Airflow, Terraform, and Kubernetes.
   current_description: |
     Now, I am a Senior Data Engineer II at AEON Bank, leading a team of 2–3 engineers and owning
-    50+ production pipelines. I work on data ingestion, warehousing, and observability using
-    AWS, Airflow, dbt, Terraform, and Kubernetes.
+    50+ production pipelines. I build self-service ingestion and CDC pipelines, model warehouses
+    with dbt, and run the platform on EKS with Terragrunt, Helm, and ArgoCD.
 
 social:
   github: https://github.com/amzar96
@@ -31,12 +31,17 @@ experience:
     description: ""
     technologies:
       - Python
+      - SQL
+      - Airflow
       - dbt
-      - Terraform
       - AWS
       - Kubernetes
+      - Terraform
+      - Terragrunt
+      - Helm
+      - ArgoCD
+      - Karpenter
       - Git
-      - SQL
   - title: Analytics Engineer & Platform Engineer
     company: Be U by Bank Islam
     period: Jul 2022 - Sep 2024 · 2 yrs 3 mos
@@ -126,14 +131,14 @@ cv:
   summary: >
     Senior Data Engineer II with {years}+ years of experience building and operating data platforms
     on AWS, mainly in digital banking and fintech. Leads a team of 2–3 engineers and owns 50+
-    production pipelines processing 2–3 million records/day from 6+ source systems. Designs batch
-    and mini-batch ingestion, models warehouses with dbt, and automates delivery with Airflow,
-    Terraform, Kubernetes, and CI/CD. Recent focus: zero-loss ingestion, pipeline observability,
-    and CI checks that stop broken dbt models before production.
+    production pipelines processing 2–3 million records/day from 6+ source systems. Designs batch,
+    CDC, and self-service ingestion; models warehouses with dbt; and automates delivery with
+    Airflow, Terraform, Terragrunt, Kubernetes, ArgoCD, and CI/CD. Recent focus: zero-loss ingestion,
+    pipeline observability, and CI checks that stop broken dbt models before production.
   
   skills:
     - category: Languages
-      items: [Python, SQL, Bash]
+      items: [Python, SQL, Bash, JavaScript]
     - category: Data Engineering
       items:
         - Apache Airflow
@@ -144,6 +149,8 @@ cv:
         - Great Expectations
         - DataHub
         - ETL/ELT
+        - CDC
+        - Data Ingestion
         - DataOps
     - category: Data Architecture & Quality
       items:
@@ -154,12 +161,16 @@ cv:
         - Data Observability
     - category: Cloud & Infrastructure
       items:
-        - AWS (S3, Glue, Lambda, DMS, EMR, EKS, Athena, Kinesis, RDS, IAM, VPC)
+        - AWS (S3, Glue, Lambda, EC2, DMS, EMR, EKS, Athena, Kinesis, RDS, IAM, VPC)
         - GCP
         - Terraform
+        - Terragrunt
         - AWS CDK
         - CloudFormation
         - Ansible
+        - Helm
+        - ArgoCD
+        - Karpenter
         - Docker
         - Kubernetes
     - category: CI/CD & Observability
@@ -184,22 +195,28 @@ cv:
       note: Tenure Sep 2024 – Present; promoted from Senior Data Engineer
       bullets:
         - Lead a team of 2–3 data engineers and own 50+ production pipelines processing 2–3 million records/day
-        - Redesigned batch ingestion to a mini-batch model, eliminating data loss and reducing data latency
-        - Built end-to-end CSV/JSON ingestion, translating stakeholder requirements into warehouse models and enabling analytics use cases
-        - Added dbt compile/test checks to GitHub Actions, blocking broken models before Airflow deployment and reducing production failures
-        - Provisioned warehouse infrastructure and SaaS integrations with Terraform, reducing environment setup time
-        - Built pipeline observability in Python and Airflow (freshness, volume, schema checks), improving incident detection and response
+        - Built a centralized API/SFTP and batch ingestion monorepo with a YAML-driven self-service Airflow framework
+        - Enabled CDC/real-time ingestion with AWS DMS and Glue; moved batch jobs to mini-batch to eliminate data loss
+        - Built reusable dbt macros for bronze-to-gold models (1-to-1, dedup) and added dbt checks to GitHub Actions before deployment
+        - Migrated Terraform to Terragrunt; maintain EKS with Helm/ArgoCD GitOps and automated PR validation
+        - Implemented Karpenter Spot auto-scaling on EKS and built pipeline observability (freshness, volume, schema)
+        - Mentored engineers, covered team lead duties (sprint planning, standups), and automated recurring ops with GitHub Actions
       technologies:
         - Python
         - SQL
+        - Bash
         - Airflow
         - dbt
-        - AWS Glue
-        - AWS DMS
-        - Terraform
-        - GitHub Actions
-        - Kubernetes
         - PySpark
+        - AWS (S3, Lambda, DMS, Glue, IAM, EKS)
+        - Kubernetes
+        - Terraform
+        - Terragrunt
+        - Helm
+        - ArgoCD
+        - Karpenter
+        - Docker
+        - GitHub Actions
   
     - title: Platform Engineer
       company: Be U by Bank Islam
