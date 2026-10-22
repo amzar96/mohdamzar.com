@@ -70,24 +70,84 @@ experience:
       - Linux
 
 projects:
-  - title: Data Pipeline Automation
-    description: Automated ETL pipeline processing millions of records daily with real-time monitoring and alerting.
+  - title: Homelab Infrastructure & GitOps
+    description: >
+      Self-hosted Proxmox homelab provisioned with Terraform and configured with Ansible,
+      including a highly available k3s cluster, Tailscale-only access, monitoring, media,
+      and services like Vaultwarden, Authentik SSO, Jupyter, and Garage S3. ArgoCD deploys
+      the cluster from a separate GitOps repository, while a self-hosted GitHub Actions runner
+      plans and applies Terraform changes with automated security scans. Repositories are private for now.
     technologies:
-      - Python
-      - Apache Airflow
-      - PostgreSQL
-      - Redis
-    status: Production
-    link: "#"
-  - title: Analytics Dashboard
-    description: Interactive business intelligence dashboard providing real-time insights for stakeholders.
-    technologies:
-      - React
-      - D3.js
-      - FastAPI
+      - Proxmox
+      - Terraform
+      - Ansible
+      - k3s
+      - ArgoCD
+      - Tailscale
+      - Cloudflare Tunnel
+      - GitHub Actions
       - Docker
-    status: In Development
+    status: Private Project
     link: "#"
+    diagram: |
+      flowchart LR
+        CI["GitHub Actions runner<br/>plan · apply · scans"]
+
+        subgraph Provision["Provisioning"]
+          direction LR
+          T["Terraform<br/>VMs and LXC"]
+          A["Ansible<br/>OS, k3s, ArgoCD"]
+          P["Proxmox<br/>hypervisor"]
+        end
+
+        subgraph Cluster["k3s HA cluster"]
+          direction LR
+          LB["HAProxy<br/>API endpoint"]
+          CP["3 control planes<br/>embedded etcd"]
+          W["Worker node"]
+        end
+
+        subgraph GitOps["GitOps delivery"]
+          direction LR
+          G["argocd-gitops<br/>private repo"]
+          AR["ArgoCD"]
+          AS["ApplicationSet"]
+          APPS["Services<br/>Vaultwarden · Authentik<br/>Jupyter · Garage S3"]
+        end
+
+        subgraph Ops["Access and observability"]
+          direction LR
+          TS["Tailscale"]
+          CF["Cloudflare Tunnel"]
+          MON["Traefik · Uptime Kuma · Beszel"]
+        end
+
+        CI --> T
+        CI --> A
+        T --> P
+        A --> P
+        A --> AR
+        P --> LB
+        LB --> CP
+        P --> W
+        G --> AR
+        AR --> AS
+        AS --> APPS
+        APPS --> MON
+        TS --> APPS
+        CF --> APPS
+
+        classDef provision fill:#ecfdf5,stroke:#047857,color:#064e3b,stroke-width:1.5px
+        classDef cluster fill:#f0fdfa,stroke:#0f766e,color:#134e4a,stroke-width:1.5px
+        classDef gitops fill:#eff6ff,stroke:#1d4ed8,color:#1e3a8a,stroke-width:1.5px
+        classDef ops fill:#fafaf9,stroke:#78716c,color:#292524,stroke-width:1.5px
+        classDef apps fill:#fff7ed,stroke:#c2410c,color:#7c2d12,stroke-width:1.5px
+        class CI provision
+        class T,A,P provision
+        class LB,CP,W cluster
+        class G,AR,AS gitops
+        class APPS apps
+        class TS,CF,MON ops
 
 contact:
   methods:

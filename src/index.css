@@ -33,6 +33,13 @@
     @apply underline underline-offset-4 decoration-primary-600/60 dark:decoration-primary-400/60 hover:decoration-primary-600 dark:hover:decoration-primary-400;
   }
 
+  .mermaid-diagram svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
   ::selection {
     background-color: #05966933;
   }

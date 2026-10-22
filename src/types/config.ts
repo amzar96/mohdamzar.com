@@ -34,6 +34,7 @@ export interface Project {
   technologies: string[];
   status: string;
   link: string;
+  diagram?: string;
 }
 
 export interface ContactMethod {
