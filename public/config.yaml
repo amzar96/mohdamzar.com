@@ -28,7 +28,7 @@ experience:
     company: AEON Bank
     period: Sep 2024 - Present
     location: Kuala Lumpur · Hybrid
-    description: "Promoted from Senior Data Engineer in Sep 2026; leading 2–3 engineers and 50+ production pipelines."
+    description: "Promoted from Senior Data Engineer in Sep 2026; leading 2–3 engineers and 200+ production pipelines."
     technologies:
       - Python
       - SQL
@@ -130,7 +130,7 @@ cv:
   
   summary: >
     Senior Data Engineer II with {years}+ years of experience building and operating data platforms
-    on AWS, mainly in digital banking and fintech. Leads a team of 2–3 engineers and owns 50+
+    on AWS, mainly in digital banking and fintech. Leads a team of 2–3 engineers and owns 200+
     production pipelines processing 2–3 million records/day from 6+ source systems. Designs batch,
     CDC, and self-service ingestion; models warehouses with dbt; and automates delivery with
     Airflow, Terraform, Terragrunt, Kubernetes, ArgoCD, and CI/CD. Recent focus: zero-loss ingestion,
