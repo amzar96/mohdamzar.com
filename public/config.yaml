@@ -28,7 +28,7 @@ experience:
     company: AEON Bank
     period: Sep 2024 - Present
     location: Kuala Lumpur · Hybrid
-    description: ""
+    description: "Promoted from Senior Data Engineer in Sep 2026; leading 2–3 engineers and 50+ production pipelines."
     technologies:
       - Python
       - SQL
@@ -194,12 +194,11 @@ cv:
       period: Sep 2026 – Present
       note: Tenure Sep 2024 – Present; promoted from Senior Data Engineer
       bullets:
-        - Lead a team of 2–3 data engineers and own 50+ production pipelines processing 2–3 million records/day
         - Built a centralized API/SFTP and batch ingestion monorepo with a YAML-driven self-service Airflow framework
         - Enabled CDC/real-time ingestion with AWS DMS and Glue; moved batch jobs to mini-batch to eliminate data loss
         - Built reusable dbt macros for bronze-to-gold models (1-to-1, dedup) and added dbt checks to GitHub Actions before deployment
         - Migrated Terraform to Terragrunt; maintain EKS with Helm/ArgoCD GitOps and automated PR validation
-        - Implemented Karpenter Spot auto-scaling on EKS and built pipeline observability (freshness, volume, schema)
+        - Implemented Karpenter Spot auto-scaling on EKS, cutting cluster compute cost and building pipeline observability (freshness, volume, schema)
         - Mentored engineers, covered team lead duties (sprint planning, standups), and automated recurring ops with GitHub Actions
       technologies:
         - Python

@@ -14,7 +14,7 @@ const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 );
 
 const ExperienceItem: React.FC<{ exp: CVExperience }> = ({ exp }) => (
-  <div className="mb-5">
+  <div className="mb-5 break-inside-avoid">
     <div className="break-after-avoid break-inside-avoid">
       <div className="flex justify-between items-baseline">
         <span className="font-bold text-sm text-gray-900 dark:text-gray-100 print:text-black">{exp.title}</span>
