@@ -212,7 +212,25 @@ Build artifacts will be in the `dist/` directory and can be served with any stat
 3. **Start Dev Server**: Run `make dev`
 4. **Run Tests**: Run `make test` to ensure everything works
 5. **Build**: Run `make build` to create production build
-6. **Deploy**: Use Docker or deploy `dist/` to any static host
+6. **Deploy**: Merge to `master` (see [Deployment](#deployment-gitops))
+
+## Deployment (GitOps)
+
+This site runs on the homelab k3s cluster and is delivered entirely from git — no manual
+deploys:
+
+1. A push to `master` triggers `.github/workflows/workflow.yml`, which builds the production
+   image and pushes it to GHCR tagged with the short commit SHA.
+2. The same workflow commits that image tag into the `argocd-gitops` repo
+   (`apps/website/base/deployment.yaml`).
+3. ArgoCD watches `argocd-gitops` and reconciles the `website-prod` Application onto the
+   cluster.
+
+Infrastructure and host configuration come from the separate
+[`homelab-iac`](https://github.com/amzar96/homelab-iac) repo, where a **self-hosted GitHub
+Actions runner** (its own Proxmox LXC) plans Terraform on every pull request and applies
+Terraform + Ansible on merge. Together, cluster infrastructure and this application are both
+GitOps-driven; only the one-time ArgoCD bootstrap Application is seeded by Ansible.
 
 ## License
 

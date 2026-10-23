@@ -72,17 +72,21 @@ experience:
 projects:
   - title: Homelab Infrastructure & GitOps
     description: >
-      Self-hosted Proxmox homelab provisioned with Terraform and configured with Ansible,
-      including a highly available k3s cluster, Tailscale-only access, monitoring, media,
-      and services like Vaultwarden, Authentik SSO, Jupyter, and Garage S3. ArgoCD deploys
-      the cluster from a separate GitOps repository, while a self-hosted GitHub Actions runner
-      plans and applies Terraform changes with automated security scans. Repositories are private for now.
+      Self-hosted Proxmox homelab provisioned with Terraform and configured with Ansible: a
+      highly available k3s cluster, Tailscale-only access, and services like Vaultwarden,
+      Authentik SSO, Jupyter, Garage S3, and this website. Delivery is fully GitOps — a
+      self-hosted GitHub Actions runner on its own Proxmox LXC plans every pull request and
+      applies Terraform + Ansible on merge, CI commits image tags to a separate GitOps
+      repository, and ArgoCD continuously reconciles the cluster from git. Repositories are
+      private for now.
     technologies:
       - Proxmox
       - Terraform
       - Ansible
       - k3s
       - ArgoCD
+      - Kustomize
+      - Helm
       - Tailscale
       - Cloudflare Tunnel
       - GitHub Actions
@@ -91,7 +95,14 @@ projects:
     link: "#"
     diagram: |
       flowchart LR
-        CI["GitHub Actions runner<br/>plan · apply · scans"]
+        DEV["Developer<br/>git push · pull request"]
+
+        subgraph CI["CI/CD · GitHub Actions"]
+          direction LR
+          PLAN["Terraform plan<br/>on pull request · self-hosted runner"]
+          APPLY["Terraform + Ansible apply<br/>on merge · self-hosted runner LXC 230"]
+          SCAN["Checkov · Gitleaks<br/>GitHub-hosted runners"]
+        end
 
         subgraph Provision["Provisioning"]
           direction LR
@@ -107,12 +118,18 @@ projects:
           W["Worker node"]
         end
 
+        subgraph Delivery["Application delivery"]
+          direction LR
+          BUILD["GitHub Actions<br/>build image"]
+          GHCR["GHCR<br/>image registry"]
+        end
+
         subgraph GitOps["GitOps delivery"]
           direction LR
           G["argocd-gitops<br/>private repo"]
           AR["ArgoCD"]
           AS["ApplicationSet"]
-          APPS["Services<br/>Vaultwarden · Authentik<br/>Jupyter · Garage S3"]
+          APPS["Services<br/>Vaultwarden · Authentik<br/>Jupyter · Garage S3<br/>and this website"]
         end
 
         subgraph Ops["Access and observability"]
@@ -122,14 +139,20 @@ projects:
           MON["Traefik · Uptime Kuma · Beszel"]
         end
 
-        CI --> T
-        CI --> A
+        DEV --> PLAN
+        DEV --> BUILD
+        PLAN --> SCAN
+        SCAN --> APPLY
+        APPLY --> T
+        APPLY --> A
         T --> P
         A --> P
-        A --> AR
+        A -->|bootstrap| AR
         P --> LB
         LB --> CP
         P --> W
+        BUILD --> GHCR
+        GHCR -->|image tag commit| G
         G --> AR
         AR --> AS
         AS --> APPS
@@ -142,9 +165,12 @@ projects:
         classDef gitops fill:#eff6ff,stroke:#1d4ed8,color:#1e3a8a,stroke-width:1.5px
         classDef ops fill:#fafaf9,stroke:#78716c,color:#292524,stroke-width:1.5px
         classDef apps fill:#fff7ed,stroke:#c2410c,color:#7c2d12,stroke-width:1.5px
-        class CI provision
+        classDef ci fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1.5px
+        class PLAN,APPLY ci
+        class SCAN gitops
         class T,A,P provision
         class LB,CP,W cluster
+        class BUILD,GHCR gitops
         class G,AR,AS gitops
         class APPS apps
         class TS,CF,MON ops
