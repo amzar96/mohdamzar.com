@@ -259,7 +259,7 @@ cv:
         - Built reusable dbt macros for bronze-to-gold models (1-to-1, dedup) and added dbt checks to GitHub Actions before deployment
         - Migrated Terraform to Terragrunt; maintain EKS with Helm/ArgoCD GitOps and automated PR validation
         - Implemented Karpenter Spot auto-scaling on EKS, cutting cluster compute cost and building pipeline observability (freshness, volume, schema)
-        - Acted as team lead for the data engineering team: planned sprints, unblocked delivery in daily standups, and grew engineers through hands-on mentoring
+        - "Acted as team lead for the data engineering team: planned sprints, unblocked delivery in daily standups, and grew engineers through hands-on mentoring"
         - Automated recurring operational tasks with GitHub Actions
       technologies:
         - Python
