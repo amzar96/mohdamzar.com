@@ -251,15 +251,16 @@ cv:
     - title: Senior Data Engineer II
       company: AEON Bank
       location: Kuala Lumpur, Malaysia
-      period: Sep 2026 – Present
-      note: Tenure Sep 2024 – Present; promoted from Senior Data Engineer
+      period: Sep 2024 – Present
+      note: Manager (Sep 2024 – Sep 2026) → Senior Manager (Oct 2026 – Present)
       bullets:
         - Built a centralized API/SFTP and batch ingestion monorepo with a YAML-driven self-service Airflow framework
         - Enabled CDC/real-time ingestion with AWS DMS and Glue; moved batch jobs to mini-batch to eliminate data loss
         - Built reusable dbt macros for bronze-to-gold models (1-to-1, dedup) and added dbt checks to GitHub Actions before deployment
         - Migrated Terraform to Terragrunt; maintain EKS with Helm/ArgoCD GitOps and automated PR validation
         - Implemented Karpenter Spot auto-scaling on EKS, cutting cluster compute cost and building pipeline observability (freshness, volume, schema)
-        - Mentored engineers, covered team lead duties (sprint planning, standups), and automated recurring ops with GitHub Actions
+        - Acted as team lead for the data engineering team: planned sprints, unblocked delivery in daily standups, and grew engineers through hands-on mentoring
+        - Automated recurring operational tasks with GitHub Actions
       technologies:
         - Python
         - SQL
@@ -281,6 +282,7 @@ cv:
       company: Be U by Bank Islam
       location: Kuala Lumpur, Malaysia
       period: Oct 2023 – Sep 2024
+      note: Deputy Manager
       bullets:
         - Built AWS CI/CD pipelines with CodeCommit, CodeBuild, and CodePipeline for multiple teams, reducing release lead time
         - Standardized infrastructure as code with AWS CDK, CloudFormation, Terraform, and Ansible, replacing manual provisioning and cutting setup time
@@ -300,7 +302,8 @@ cv:
     - title: Analytics Engineer
       company: Be U by Bank Islam
       location: Kuala Lumpur, Malaysia
-      period: Jul 2022 – Sep 2023
+      period: Jul 2022 – Sep 2024
+      note: Deputy Manager
       bullets:
         - Designed KPI dashboards for business users, replacing manual reports and reducing report turnaround time
         - Automated regulatory reporting pipelines in Python and Airflow on AWS EKS, reducing manual interventions
